@@ -20,6 +20,6 @@ export class WelcomeComponent {
 
   onStart() {
     // Navigue vers le flow principal ; adapte la route à ton app
-    this.router.navigate(['/experience'], { queryParams: { lang: this.lang } });
+    this.router.navigate(['/menu'], { queryParams: { lang: this.lang } });
   }
 }
