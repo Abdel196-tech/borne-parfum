@@ -1,1 +1,38 @@
-<p>welcome works!</p>
+<!-- welcome.component.html -->
+<section class="welcome-page" role="region" aria-label="Landing parfums">
+    <div class="content">
+      <header class="brand">
+        <div class="brand__logo" aria-hidden="true">LOGO</div>
+      </header>
+  
+      <h1 class="hero__title">
+        Découvrez <span class="hero__title--accent">votre parfum signature</span>
+      </h1>
+  
+      <p class="hero__subtitle">
+        Une expérience olfactive unique, créée par notre système intelligent, pour révéler votre essence personnelle.
+      </p>
+  
+      <div class="actions">
+        <button class="cta" (click)="onStart()" aria-label="Commencer l'expérience">
+          ✨ Commencer l'expérience
+        </button>
+  
+        <div class="lang" role="tablist" aria-label="Choisir la langue">
+          <button class="lang__item" [class.active]="lang==='fr'" (click)="setLang('fr')" role="tab" >FR</button>
+          <button class="lang__item" [class.active]="lang==='en'" (click)="setLang('en')" role="tab" >EN</button>
+          <button class="lang__item" [class.active]="lang==='nl'" (click)="setLang('nl')" role="tab" >NL</button>
+        </div>
+      </div>
+    </div>
+  
+    <aside class="visual" aria-hidden="false">
+      <img src="assets/parfum-hero.jpg" alt="Flacons de parfum" class="visual__img" />
+      <div class="visual__overlay"></div>
+      <div class="visual__caption">
+        <h2>Collection Exclusive</h2>
+        <p>Découvrez nos parfums d'exception</p>
+      </div>
+    </aside>
+  </section>
+  
