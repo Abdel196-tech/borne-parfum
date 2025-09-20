@@ -13,15 +13,18 @@
     font-style: normal;
     font-display: swap;
   }
-  
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap');
+
   :root {
-    font-size: 16px;
-  }
+  --color-creme: #fdfaf6;
+  --color-sable: #d4b996;
+  --color-gris: #444444;
+}
 body {
     font-family: 'Inter', sans-serif;
   }
   .hero__title {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Montserrat', sans-serif;
   }
 
 
@@ -33,92 +36,111 @@ body {
     overflow: hidden;
     align-items: stretch;
   
-    background: linear-gradient(180deg, #fffdfb 0%, #fffaf7 100%);
+    background: linear-gradient(180deg, #fffdfd 0%, #ffffff 100%);
   }
   
   /* LEFT CONTENT */
-  .content {
-    padding: 64px 72px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 20px;
-    max-width: 700px;
-  }
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;     /* centre horizontalement */
+  justify-content: center; /* centre verticalement */
+  text-align: center;      /* centre le texte */
+  height: 100vh;           /* prend toute la hauteur de l'écran */
+  padding: 200px;           /* petit padding pour respirer */
+  box-sizing: border-box;
+}
+
   
-  .brand__logo {
-    display: inline-block;
-    padding: 8px 14px;
-    border-radius: 999px;
-    background: linear-gradient(90deg, var(--gold-1), var(--gold-2));
-    color: white;
-    font-weight: 600;
-    letter-spacing: .6px;
-    box-shadow: 0 6px 18px rgba(198,145,60,0.15);
-  }
-  
+  .brand__logo img {
+  max-width: 500px;   /* largeur max du logo */
+  margin-bottom: 90px;
+  height: auto;       /* conserve les proportions */
+  display: block;     /* enlève l’espace blanc sous l’image */
+}
+
   /* HEADLINE */
-  .hero__title {
-    font-family: 'Playfair Display', serif;
-    font-weight: 700;
-    font-size: 3.2rem;
-    line-height: 1.02;
-    color: #b57f2a; 
-    margin: 8px 0;
-  }
-  
-  .hero__title--accent {
-    display: inline-block;
-    color: #a8742b;
-  }
-  
+.hero__title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 4.5rem;
+  color: var(--color-sable);
+  margin: 20px 0;
+}
+.hero__title--accent {
+  color: var(--color-gris);
+}
   /* SUBTITLE */
-  .hero__subtitle {
-    color: var(--muted);
-    font-size: 1.05rem;
-    max-width: 48ch;
-  }
-  
+.hero__subtitle {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 900;
+  font-size: 2.3rem;
+  margin-bottom: 30px;
+  color:#5B3C11;
+  font-style: normal;
+}
   /* ACTIONS */
-  .actions {
-    margin-top: 14px;
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-  }
+.actions {
+  margin-bottom: 100px; /* espace entre bouton et sélecteur de langue */
+}
   
-  .cta {
-    background: linear-gradient(90deg, #d9a949, #c48e39);
-    border: none;
-    color: #fff;
-    padding: 14px 26px;
-    border-radius: 18px;
-    font-weight: 600;
-    font-size: 1.05rem;
-    box-shadow: 0 14px 30px rgba(196,142,57,0.18);
-    cursor: pointer;
-    transition: transform .18s ease, box-shadow .18s;
-  }
-  
-  .cta:hover { transform: translateY(-3px); box-shadow: 0 20px 40px rgba(196,142,57,0.22); }
-  
-  .lang {
-    display: flex;
-    gap: 10px;
-    margin-top: 6px;
-  }
-  
-  .lang__item {
-    padding: 10px 14px;
-    border-radius: 999px;
-    border: 1px solid rgba(0,0,0,0.06);
-    background: white;
-    min-width: 56px;
-    text-align: center;
-    font-weight: 600;
-    cursor: pointer;
-  }
-  
+.cta{
+    font-family: "Poppins", sans-serif;
+    /* background: var(--color-gris); */
+    color: #5B3C11;
+    width: 400px;    /* largeur fixe */
+    height: 70px;    /* hauteur fixe */
+    padding: 1rem 2rem;
+    border-radius: 25px;
+    box-shadow: 0 2px 6px #5B3C11;
+    transition: transform 0.5s;
+    margin-top: 100px;
+    font-size: larger;
+    font-style: normal;
+    font-weight: bolder;
+}
+.cta:hover {
+  transform: translateY(-2px);
+  background: #e0e0e0;
+}  
+
+.lang {
+  display: flex;
+  justify-content: center;
+  gap: 35px; /* espace entre cercles */
+  margin-top: 180px;
+}
+
+.lang__item {
+  width: 90px;          /* taille du cercle */
+  height: 90px;
+  border-radius: 60%;   /* cercle */
+  border: 2px solid #5B3C11;
+  background: white;
+  cursor: pointer;
+  display: flex;        /* pour centrer le contenu (drapeau ou texte) */
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 14px;
+  flex-direction: column; /* permet de mettre drapeau + texte en colonne */
+  position: relative;
+}
+
+.lang__flag {
+  width: 79.3px; /* taille du drapeau dans le cercle */
+  height: 92.2px;
+  object-fit: cover;
+  border-radius: 1300;
+  margin-top: 29px;
+}
+
+.lang__label {
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+  font-size: 14px;
+  text-align: center;
+  color: var(--color-sable);
+}
   .lang__item.active {
     border-color: transparent;
     background: linear-gradient(90deg, rgba(214,166,79,0.12), rgba(214,166,79,0.08));
@@ -151,20 +173,27 @@ body {
     pointer-events: none;
   }
   
-  .visual__caption {
-    position: absolute;
-    bottom: 32px;
-    left: 32px;
-    color: white;
-    text-shadow: 0 6px 18px rgba(0,0,0,0.4);
-  }
-  
-  .visual__caption h2 {
-    font-size: 1.6rem;
-    margin: 0 0 6px;
-    font-weight: 700;
-  }
-  
+.visual {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.visual__video {
+  width: 100%;
+  height: 100%;
+  /* object-fit: cover; la vidéo remplit bien le bloc */
+  display: block;
+  margin-left:530px;
+}
+
+.visual__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.3); /* léger filtre sombre */
+}
+
   /* RESPONSIVE */
   @media (max-width: 900px) {
     .welcome-page {
@@ -181,5 +210,3 @@ body {
       font-size: 2rem;
     }
   }
-  
-  
