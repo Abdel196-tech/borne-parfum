@@ -16,9 +16,9 @@
   @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap');
 
 :root {
-  --color-creme: #EEE6D8; /* crème douce */
-  --color-sable: #5B3C11; /* sable profond (brun/terreux) */
-  --color-gris: #CECECE;  /* gris clair chic */
+  color: #EEE6D8; /* crème douce */
+  color: #5B3C11; /* sable profond (brun/terreux) */
+  color: #CECECE;  /* gris clair chic */
 }
 
 body {
@@ -40,12 +40,7 @@ body {
   min-height: 100vh;
   overflow: hidden;
   align-items: stretch;
-  background: linear-gradient(
-    135deg,
-    #CECECE 30%,
-    #ffffff 20%,
-    #5B3C11 70%,
-  );
+  background: linear-gradient(180deg,#EEE6D8,#CECECE,#fffbf4);
 }
   /* LEFT CONTENT */
 .content {
@@ -108,7 +103,11 @@ animation: fadeInUp 1s ease both;
 .cta{
   font-family: "Poppins", serif;
   color: #000000;
-  background: #EEE6D8;
+  background: linear-gradient(
+    135deg,
+    #ffffff 30%,
+    #ffffff 20%,
+    #EEE6D8 70%);
   width: 520px;
   height: 90px;
   padding: 1rem 2rem;
@@ -122,6 +121,7 @@ animation: fadeInUp 1s ease both;
   overflow: hidden;
   position: relative;
   cursor: pointer;
+  border-width: 3px;
 }
 .cta::after {
   content: "";
