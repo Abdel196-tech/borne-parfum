@@ -15,13 +15,17 @@
   }
   @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap');
 
-  :root {
-  --color-creme: #fdfaf6;
-  --color-sable: #d4b996;
-  --color-gris: #444444;
+:root {
+  --color-creme: #EEE6D8; /* crème douce */
+  --color-sable: #5B3C11; /* sable profond (brun/terreux) */
+  --color-gris: #CECECE;  /* gris clair chic */
 }
+
 body {
     font-family: 'Inter', sans-serif;
+    background: var(--color-creme);
+    color: var(--color-sable);
+    margin: 0;
   }
   .hero__title {
     font-family: 'Montserrat', sans-serif;
@@ -30,15 +34,18 @@ body {
 
   /* welcome.component.scss */
 .welcome-page {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    min-height: 100vh;
-    overflow: hidden;
-    align-items: stretch;
-  
-    background: linear-gradient(180deg, #fffdfd 0%, #ffffff 100%);
-  }
-  
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+  overflow: hidden;
+  align-items: stretch;
+  background: linear-gradient(
+    135deg,
+    #CECECE 30%,
+    #ffffff 20%,
+    #5B3C11 500%,
+  );
+}
   /* LEFT CONTENT */
 .content {
   display: flex;
@@ -53,100 +60,110 @@ body {
 
   
   .brand__logo img {
-  max-width: 500px;   /* largeur max du logo */
-  margin-bottom: 90px;
-  height: auto;       /* conserve les proportions */
-  display: block;     /* enlève l’espace blanc sous l’image */
+  max-width: 380px;
+  margin-bottom: 50px;
+  filter: drop-shadow(0px 4px 12px rgba(0, 0, 0, 0.08));   /* enlève l’espace blanc sous l’image */
 }
 
   /* HEADLINE */
 .hero__title {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 4.5rem;
-  color: var(--color-sable);
-  margin: 20px 0;
+ font-family: 'Playfair Display', serif;
+  font-size: 4rem;
+  font-weight: 800;
+  line-height: 2.2;
+  color: #5B3C11;
+  letter-spacing: 3px;
 }
 .hero__title--accent {
-  color: var(--color-gris);
+  color: var(--color-sable); /* accent en sable profond */
+  font-weight: 700;
+   letter-spacing: 3px;
 }
   /* SUBTITLE */
 .hero__subtitle {
   font-family: 'Poppins', sans-serif;
+  font-size: 1.5rem;
   font-weight: 900;
-  font-size: 2.3rem;
-  margin-bottom: 30px;
-  color:#5B3C11;
-  font-style: normal;
+  color: var(--color-sable);
+  margin-bottom: 80px;
+  max-width: 480px;
+  letter-spacing: 2px;
+  color:#000000;
+  margin-top: 1px;
+  margin-bottom: 100px;
 }
   /* ACTIONS */
 .actions {
-  margin-bottom: 100px; /* espace entre bouton et sélecteur de langue */
+  margin-bottom: 50px; /* espace entre bouton et sélecteur de langue */
 }
   
 .cta{
-    font-family: "Poppins", sans-serif;
-    /* background: var(--color-gris); */
-    color: #5B3C11;
-    width: 400px;    /* largeur fixe */
-    height: 70px;    /* hauteur fixe */
-    padding: 1rem 2rem;
-    border-radius: 25px;
-    box-shadow: 0 2px 6px #5B3C11;
-    transition: transform 0.5s;
-    margin-top: 100px;
-    font-size: larger;
-    font-style: normal;
-    font-weight: bolder;
+  font-family: "Poppins", serif;
+  color: #000000;
+  background: #EEE6D8;
+  width: 520px;
+  height: 90px;
+  padding: 1rem 2rem;
+  border-radius: 60px;
+  font-size: 1.5rem;
+  font-weight: 800;
+  box-shadow: 0 6px 18px rgba(91, 60, 17, 0.35);
+  transition: all 0.4s ease;
+  cursor: pointer;
+  letter-spacing: 1.5px;
 }
 .cta:hover {
-  transform: translateY(-2px);
-  background: #e0e0e0;
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 10px 25px rgba(91, 60, 17, 0.45);
+
 }  
 
 .lang {
   display: flex;
   justify-content: center;
-  gap: 35px; /* espace entre cercles */
-  margin-top: 180px;
+  gap: 40px;
+  margin-top: 100px;
+
 }
 
 .lang__item {
-  width: 90px;          /* taille du cercle */
+  width: 90px;
   height: 90px;
-  border-radius: 60%;   /* cercle */
-  border: 2px solid #5B3C11;
-  background: white;
+  border-radius: 50%;
+  border: 2px solid #000000;
+  background: #fff;
   cursor: pointer;
-  display: flex;        /* pour centrer le contenu (drapeau ou texte) */
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-weight: 900;
-  font-size: 14px;
-  flex-direction: column; /* permet de mettre drapeau + texte en colonne */
-  position: relative;
+  transition: all 0.3s ease;}
+.lang__item:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 14px rgba(91, 60, 17, 0.25);
+}
+.lang__flag {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
-.lang__flag {
-  width: 79.3px; /* taille du drapeau dans le cercle */
-  height: 92.2px;
-  object-fit: cover;
-  border-radius: 1300;
-  margin-top: 29px;
-}
 
 .lang__label {
+  margin-top: 8px;
   font-family: 'Poppins', sans-serif;
-  font-weight: bold;
+  font-weight: 600;
   font-size: 14px;
-  text-align: center;
   color: var(--color-sable);
 }
-  .lang__item.active {
-    border-color: transparent;
-    background: linear-gradient(90deg, rgba(214,166,79,0.12), rgba(214,166,79,0.08));
-    color: #b07d2a;
-    box-shadow: 0 6px 14px rgba(176,125,42,0.08);
-  }
+
+ 
+.lang__item.active {
+  border-color: transparent;
+  background: linear-gradient(135deg, #fff,#EEE6D8);
+  box-shadow: 0 8px 18px rgba(91,60,17,0.3);
+}
   
   /* RIGHT VISUAL */
   .visual {
@@ -175,7 +192,7 @@ body {
   
 .visual {
   position: relative;
-  width: 100%;
+
   height: 100vh;
   overflow: hidden;
 }
@@ -183,15 +200,15 @@ body {
 .visual__video {
   width: 100%;
   height: 100%;
-  /* object-fit: cover; la vidéo remplit bien le bloc */
+  object-fit: cover; /* la vidéo remplit bien le bloc */
   display: block;
-  margin-left:530px;
+  filter:brightness(0.9)contrast(1.05);
 }
 
 .visual__overlay {
   position: absolute;
   inset: 0;
-  background: rgba(255, 255, 255, 0.3); /* léger filtre sombre */
+  background: linear-gradient(90deg, rgba(0,0,0,0.4), rgba(0,0,0,0.15));
 }
 
   /* RESPONSIVE */
