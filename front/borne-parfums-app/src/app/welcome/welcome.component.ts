@@ -1,3 +1,4 @@
+// welcome.component.ts
 import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { TRANSLATIONS } from '../i18n/translation'; // <-- ici, ../ pour remonter d’un niveau
