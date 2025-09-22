@@ -1,33 +1,105 @@
 @font-face {
-  font-family: 'Playfair Display';
-  src: url('/playfair-v10-latin-regular.woff2') format('woff2');
-  font-weight: 700;
-  font-style: normal;
+  font-family: 'Merriweather-Regular';
+  src: url('/assets/Merriweather-Regular.woff2') format('woff2');
+  font-weight: 300;
   font-display: swap;
 }
+
 
 @font-face {
-  font-family: 'Inter';
-  src: url('/playfair-v10-latin-regular.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
+    font-family: 'Noto Serif';
+    src: url('/assets/noto-serif-v33-latin-700.woff2') format('woff2');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
 
+}@font-face {
+    font-family: 'Roboto';
+    src: url('/assets/Roboto-Bold.woff2') format('woff2');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Cinzel1';
+    src: url('/assets/cinzel-v26-latin-900.woff2') format('woff2');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+  
+}
+@font-face {
+    font-family: 'Cinzel';
+    src: url('/assets/cinzel-v26-latin-regular.woff2') format('woff2');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+  
+}
+@font-face {
+    font-family: 'Spectral';
+    src: url('/assets/spectral-bold.woff2') format('woff2');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;}
 :root {
-  font-size: 18px; /* un peu plus grand par défaut */
+    font-size: 18px;
+    --background: 25 15% 97%;
+    --foreground: 20 12% 20%;
+    --card: 25 20% 98%;
+    --card-foreground: 20 12% 20%;
+    --popover: 25 20% 98%;
+    --popover-foreground: 20 12% 20%;
+    --primary: 35 75% 60%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 40 85% 70%;
+    --secondary: 30 25% 94%;
+    --secondary-foreground: 20 12% 25%;
+    --muted: 28 20% 92%;
+    --muted-foreground: 50 75% 90%;
+    --accent: 35 35% 88%;
+    --accent-foreground: 20 12% 25%;
+    --destructive: 0 75% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 13% 88%;
+    --input: 220 13% 88%;
+    --ring: 45 60% 55%;
+    --note-circle: 220 10% 85%;
+    --note-selected: 45 60% 55%;
+    --gradient-primary: linear-gradient(135deg, hsl(35 75% 60%), hsl(40 85% 70%));
+    --gradient-oriental: linear-gradient(145deg, hsl(25 30% 96%), hsl(30 25% 94%));
+    --gradient-card: linear-gradient(145deg, hsl(25 20% 98%), hsl(30 25% 95%));
+    --gradient-note: linear-gradient(145deg, hsl(28 20% 92%), hsl(30 25% 88%));
+    --shadow-luxury: 0 12px 45px -12px hsl(35 75% 60% / .35);
+    --shadow-card: 0 6px 25px -6px hsl(20 12% 20% / .12);
+    --shadow-note: 0 3px 15px -3px hsl(20 12% 20% / .18);
+    --shadow-warm: 0 8px 35px -8px hsl(35 45% 65% / .25);
+    --transition-smooth: all .3s cubic-bezier(.4, 0, .2, 1);
+    --transition-luxury: all .4s cubic-bezier(.23, 1, .32, 1);
+    --radius: 1rem;
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
 }
-
 body {
-  font-family: 'Inter', sans-serif;
-  background: linear-gradient(180deg, #fffdfb 0%, #fffaf7 100%);
+  font-family: 'Noto Serif', sans-serif;
+  background: linear-gradient(180deg, #fffdfb 0%, #c58020 100%);
   margin: 0;
   padding: 0;
 }
 
+.brand{
+  width:100%;
+  margin-left: 19rem;
+  margin-bottom: 3rem;}
 .hero__title {
-  font-family: 'Playfair Display', serif;
-  font-weight: 700;
+  font-family: 'Merriweather-Regular', serif;
+  font-weight: 800;
 }
 
 /* welcome.component.scss */
@@ -41,7 +113,7 @@ body {
 
 /* LEFT CONTENT */
 .content {
-  padding: 80px 96px; /* + d’air pour grand écran */
+  padding: 90px 96px; /* + d’air pour grand écran */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -49,115 +121,252 @@ body {
   max-width: 800px;
 }
 
-.brand__logo {
-  display: inline-block;
-  padding: 12px 20px;
-  border-radius: 999px;
-  background: linear-gradient(90deg, var(--gold-1), var(--gold-2));
-  color: white;
-  font-weight: 600;
-  font-size: 1.2rem;
-  letter-spacing: .6px;
-  box-shadow: 0 6px 18px rgba(198,145,60,0.15);
-}
+
 
 /* HEADLINE */
 .hero__title {
-  font-size: 4rem; /* plus gros */
-  line-height: 1.1;
+  font-size: 5.3rem; /* plus gros */
+  line-height: 1.2;
   color: #b57f2a; 
   margin: 16px 0;
+  letter-spacing: 5px;
+  font-weight: bolder;
+  margin-top: 2rem;
+  font-style:' Cinzel';
+  text-align: center;
+  margin-left: 2rem; 
+  padding-left: 5rem;
+  width:100%;
 }
 
 .hero__subtitle {
-  color: var(--muted, #555);
-  font-size: 1.3rem;
-  max-width: 60ch;
-  line-height: 1.5;
+  background: linear-gradient(100deg, #000000, #2b271e, #8a5f1e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+
+  font-size: 2.5rem;         /* .text-2xl */
+  line-height: 1.625;        /* .leading-relaxed */
+  font-weight: 300;          /* .font-light */
+  margin-bottom: 1rem;       /* .mb-12 */
+  font-family: 'Spectral', serif;
+  text-align: center;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 10rem;
+  width: 90%;
+
+  /* Luxe subtil → gradient animé */
+  background-size: 200% auto;
+  animation: shimmer 6s ease-in-out infinite alternate;
 }
+
+/* Hover : renforce le glow doré */
+.hero__subtitle:hover {
+  animation: shimmer 9s ease-in-out infinite;
+  filter: drop-shadow(0 2px 6px rgba(233,198,129,0.4));
+}
+
+/* Animation shimmer (luxury effect) */
+@keyframes shimmer {
+  0% {
+    background-position: left center;
+  }
+  100% {
+    background-position: right center;
+  }
+}
+
 
 /* ACTIONS */
 .actions {
-  margin-top: 24px;
   display: flex;
-  flex-direction: column;
-  gap: 22px;
+  justify-content: center; /* centre le bouton horizontalement si besoin */
+  margin-bottom: 1rem; /* espace sous le bouton avant les drapeaux */
 }
+
 
 .cta {
-  background: linear-gradient(90deg, #d9a949, #c48e39);
+  background: linear-gradient(90deg, #ddb563, #dcbc87);
   border: none;
-  color: #fff;
-  padding: 20px 36px; /* bouton tactile large */
-  border-radius: 22px;
-  font-weight: 600;
-  font-size: 1.4rem;
-  box-shadow: 0 14px 30px rgba(196,142,57,0.18);
+  color: #ffffff;
+  height: 7rem;
+  width: 90rem;
+  border-radius: 38px;
+  font-weight: 850;
+  font-size: 2rem;
+  box-shadow: 0 16px 36px rgba(196,142,57,0.2);
   cursor: pointer;
-  transition: transform .18s ease, box-shadow .18s;
+  transition: transform 0.3s ease, 
+              box-shadow 0.3s ease, 
+              background-position 0.6s ease;
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  margin-left: 13rem;
+  margin-top: 5rem;
+  font-family: 'Cinzel1';
+  font-weight: bolder;
+
+  /* Pour effet gradient "luxury shine" */
+  background-size: 200% auto;
+  background-position: left center;
 }
 
+/* Hover effet luxe */
+.cta:hover {
+  transform: translateY(-4px); /* léger lift */
+  box-shadow: 0 20px 40px rgba(196,142,57,0.35),
+              0 0 15px rgba(221,181,99,0.4); /* glow doré chic */
+  background-position: right center; /* petit mouvement du gradient */
+}
+
+/* Active/click */
+.cta:active {
+  transform: scale(0.98);
+  box-shadow: 0 12px 28px rgba(196,142,57,0.25);
+}
+
+/* Focus (accessibilité + UX) */
+.cta:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(221,181,99,0.45),
+              0 20px 40px rgba(196,142,57,0.25);
+}
+
+
+
 .cta:hover { 
-  transform: translateY(-3px); 
-  box-shadow: 0 20px 40px rgba(196,142,57,0.22); 
+  transform: translateY(-5px); 
+  box-shadow: 0.5 50px 80px rgba(196,142,57,0.22); 
 }
 
 /* LANG SWITCHER */
 .lang {
   display: flex;
-  gap: 16px;
-  margin-top: 12px;
+  gap: 3rem;
+  justify-content: center;
+  width: 100%;
+  margin-top: 6rem;
+  padding-left: 6.5rem;
+  padding-bottom: 3rem;
 }
 
+/* Chaque item de langue */
 .lang__item {
-  padding: 14px 20px;
-  border-radius: 999px;
-  border: 1px solid rgba(0,0,0,0.06);
-  background: white;
-  min-width: 72px;
-  text-align: center;
-  font-weight: 600;
-  font-size: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   cursor: pointer;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  user-select: none; /* empêche la sélection de texte lors du clic */
+  width: 120px; /* largeur fixe pour uniformité */
+  margin: 0 1rem; /* espace horizontal entre les items */
+  text-decoration: none; /* enlève le soulignement si c’est un lien */
+  color: inherit; /* hérite de la couleur parente */
+  font-family: 'Cinzel';
+  font-weight: bolder;
+  letter-spacing: 0.5px;
+  text-align: center;
 }
 
-.lang__item.active {
-  border-color: transparent;
-  background: linear-gradient(90deg, rgba(214,166,79,0.12), rgba(214,166,79,0.08));
-  color: #b07d2a;
-  box-shadow: 0 6px 14px rgba(176,125,42,0.08);
+/* Effet hover global */
+.lang__item:hover {
+  transform: translateY(-6px); /* léger "lift" vers le haut */
+  filter: brightness(1.1);    /* accentue un peu la luminosité */
 }
 
-/* RIGHT VISUAL */
-.visual {
-  position: relative;
+/* Cercle contenant le drapeau */
+.lang__circle {
+  width: 5.5rem;
+  height: 5.5rem;
+  border-radius: 50%;
+  border: 2px solid rgba(0,0,0,0.06);
+  background: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   overflow: hidden;
+  transition: border-color 0.3s ease, box-shadow 0.4s ease, transform 0.3s ease;
 }
 
-.visual__img {
+/* Hover cercle → effet glow chic */
+.lang__item:hover .lang__circle {
+  border-color: #b07d2a;
+  box-shadow: 0 6px 16px rgba(176, 125, 42, 0.25),
+              inset 0 0 8px rgba(176, 125, 42, 0.15);
+  transform: scale(1.08);
+}
+
+/* Image du drapeau */
+.lang__flag {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
-  min-height: 600px;
-  transform-origin: center;
-  transition: transform .6s ease;
+  transition: transform 0.4s ease;
 }
 
-.visual:hover .visual__img { transform: scale(1.03); }
+/* Zoom subtil sur le drapeau au hover */
+.lang__item:hover .lang__flag {
+  transform: scale(1.05);
+}
 
-.visual__caption {
+/* Label sous le cercle */
+.lang__label {
+  margin-top: 1.6rem;
+  font-size: 1.6rem;
+  color: #b07d2a;
+  text-align: center;
+  font-family: 'Cinzel';
+  font-weight: bolder;
+  letter-spacing: 1px;
+  transition: color 0.3s ease;
+}
+
+/* Hover label → léger dégradé doré */
+.lang__item:hover .lang__label {
+  background: linear-gradient(45deg, #d8b46a, #b07d2a);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* État actif */
+.lang__item.active .lang__circle {
+  border-color: #b07d2a;
+  box-shadow: 0 6px 16px rgba(176,125,42,0.3),
+              inset 0 0 10px rgba(176,125,42,0.2);
+  transform: scale(1.12);
+}
+
+
+.visual {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.visual__video {
   position: absolute;
-  bottom: 48px;
-  left: 48px;
-  color: white;
-  text-shadow: 0 6px 18px rgba(0,0,0,0.4);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.6s ease; /* transition douce */
 }
 
-.visual__caption h2 {
-  font-size: 2rem;
-  margin: 0 0 10px;
-  font-weight: 700;
+.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.visible {
+  opacity: 1;
 }
 
 /* RESPONSIVE */
