@@ -1,3 +1,4 @@
+// menu.component.ts
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
@@ -15,7 +16,11 @@ export class MenuComponent implements OnInit {
   notesText!: string;
   nameText!: string;
 
-  constructor(private router: Router, private location: Location, private languageService: LanguageService) {}
+  constructor(
+    private router: Router,
+    private location: Location,
+    private languageService: LanguageService
+  ) {}
 
   ngOnInit(): void {
     // S'abonner aux changements de langue
@@ -36,11 +41,14 @@ export class MenuComponent implements OnInit {
     this.location.back();
   }
 
+  // Redirection vers la page de choix par Notes
   searchByNotes(): void {
     this.router.navigate(['/choice-notes']);
   }
 
+  // Redirection vers la page de choix par Parfum (anciennement /search-by-name)
   searchByName(): void {
-    this.router.navigate(['/search-by-name']);
+    console.log("Redirection vers la page de choix par Parfum");
+    this.router.navigate(['/choice-parfum']); // <-- modifié ici
   }
 }

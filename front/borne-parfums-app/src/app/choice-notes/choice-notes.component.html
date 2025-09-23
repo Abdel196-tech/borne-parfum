@@ -1,3 +1,70 @@
-<h1>Choisissez vos notes</h1>
-<p>Cette page permettra à l'utilisateur de sélectionner les notes du parfum.</p>
-<button (click)="goBack()">← Retour</button>
+<div class="header">
+  <div class="nav-left">
+    <button class="home-btn" routerLink="/welcome">
+      <span>🏠</span> Accueil
+    </button>
+    <button class="back-btn" (click)="goBack()">
+      <span>←</span> Retour
+    </button>
+  </div>
+</div>
+
+<div class="content">
+  <!-- Titre -->
+  <div class="title-section">
+    <h1 class="main-title">Choisis tes notes</h1>
+    <p class="subtitle">T'as le droit qu'à 5 notes</p>
+  </div>
+
+  <!-- Section Notes Disponibles -->
+  <div class="notes-section">
+    <h2 class="section-title">Notes disponibles</h2>
+
+    <!-- Scroll horizontal -->
+    <div class="notes-scroll-container">
+      <div class="note-circle-wrapper" 
+           *ngFor="let note of availableNotes"
+           [class.selected]="isSelected(note.name)"
+           (click)="toggleNote(note.name)">
+        <div class="note-circle">
+          <img [src]="note.img" alt="{{note.name}}">
+        </div>
+        <span class="note-name">{{ note.name }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section Notes Sélectionnées -->
+  <div class="selected-section">
+    <div class="selected-header">
+      <h2 class="section-title">Les notes sélectionnées</h2>
+      <span class="counter">{{ selectedNotes.length }}/5</span>
+    </div>
+
+    <div class="selected-notes">
+      <div *ngIf="selectedNotes.length === 0" class="no-selection">
+        <p>Pas de notes sélectionnées</p>
+      </div>
+
+      <div *ngFor="let note of selectedNotes"
+           class="selected-note-chip"
+           (click)="removeNote(note)">
+        {{ note }} <span class="remove-btn">×</span>
+      </div>
+    </div>
+
+    <p class="max-info">5 notes maximum</p>
+  </div>
+
+  <!-- Bouton Continuer -->
+  <div class="continue-section">
+    <p class="continue-message" *ngIf="selectedNotes.length === 0">
+      Sélectionne au moins une note pour continuer
+    </p>
+    <button class="continue-btn"
+            [disabled]="selectedNotes.length === 0"
+            (click)="searchPerfumes()">
+      Trouve mon parfum
+    </button>
+  </div>
+</div>
