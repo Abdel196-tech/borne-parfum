@@ -37,7 +37,7 @@ export class MenuComponent implements OnInit {
   }
 
   searchByNotes(): void {
-    this.router.navigate(['/search-by-notes']);
+    this.router.navigate(['/choice-notes']);
   }
 
   searchByName(): void {

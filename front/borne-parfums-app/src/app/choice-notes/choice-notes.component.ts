@@ -1,11 +1,15 @@
 import { Component } from '@angular/core';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-choice-notes',
-  imports: [],
   templateUrl: './choice-notes.component.html',
-  styleUrl: './choice-notes.component.css'
+  styleUrls: ['./choice-notes.component.css']
 })
 export class ChoiceNotesComponent {
+  constructor(private location: Location) {}
 
+  goBack() {
+    this.location.back();
+  }
 }
