@@ -1,8 +1,7 @@
-// welcome.component.ts
 import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
-import { TRANSLATIONS } from '../i18n/translation'; // <-- ici, ../ pour remonter d’un niveau
-
+import { TRANSLATIONS } from '../i18n/translation';
+import { LanguageService } from '../services/language.service';
 
 @Component({
   selector: 'app-welcome',
@@ -10,25 +9,30 @@ import { TRANSLATIONS } from '../i18n/translation'; // <-- ici, ../ pour remonte
   styleUrls: ['./welcome.component.css']
 })
 export class WelcomeComponent implements AfterViewInit {
-  lang: 'fr' | 'en' | 'nl' = 'fr';
-
   @ViewChild('videoPlayer') videoPlayer!: ElementRef<HTMLVideoElement>;
-
-  videos: string[] = ['assets/Pub1.mp4','assets/Pub2.mp4'];
+  videos: string[] = ['assets/Pub1.mp4', 'assets/Pub2.mp4'];
   currentIndex = 0;
 
-  constructor(private router: Router) {}
+  // On récupère la langue via le service
+  lang: 'fr' | 'en' | 'nl' = 'fr';
+
+  constructor(private router: Router, private languageService: LanguageService) {
+    // On s'abonne aux changements de langue
+    this.languageService.currentLang$.subscribe(l => this.lang = l);
+  }
 
   get t() {
     return TRANSLATIONS[this.lang];
   }
 
+  // Quand l'utilisateur clique sur un drapeau
   setLang(l: 'fr' | 'en' | 'nl') {
-    this.lang = l; // quand on clique sur le drapeau
+    this.languageService.setLanguage(l);
   }
 
+  // Démarre l'expérience
   onStart() {
-    this.router.navigate(['/menu'], { queryParams: { lang: this.lang } });
+    this.router.navigate(['/menu']);
   }
 
   ngAfterViewInit() {

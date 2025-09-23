@@ -1,28 +1,30 @@
-<!-- welcome.component.html -->
 <section class="welcome-page" role="region" aria-label="Landing parfums">
   <div class="content">
+    <!-- Logo de la marque -->
     <header class="brand">
       <img src="assets/modesty.png" alt="Logo de la marque" class="brand__logo" />
     </header>
 
+    <!-- Titre principal -->
     <h1 class="hero__title">
       {{ t.heroTitle }}
     </h1>
 
+    <!-- Sous-titre -->
     <p class="hero__subtitle">
-    {{ t.heroSubtitle }}
+      {{ t.heroSubtitle }}
     </p>
 
     <!-- Bouton CTA -->
     <div class="actions">
       <button class="cta" (click)="onStart()" aria-label="Commencer l'expérience">
-          {{ t.cta }}
+        {{ t.cta }}
       </button>
     </div>
 
-    <!-- Switcher de langue séparé et centré -->
+    <!-- Switcher de langue -->
     <div class="lang" role="tablist" aria-label="Choisir la langue">
-      <!-- FR -->
+      <!-- Français -->
       <div class="lang__item" [class.active]="lang==='fr'" (click)="setLang('fr')" role="tab" [attr.aria-selected]="lang==='fr'">
         <div class="lang__circle">
           <img src="assets/fr.png" alt="Français" class="lang__flag"/>
@@ -30,7 +32,7 @@
         <span class="lang__label">FR</span>
       </div>
 
-      <!-- EN -->
+      <!-- English -->
       <div class="lang__item" [class.active]="lang==='en'" (click)="setLang('en')" role="tab" [attr.aria-selected]="lang==='en'">
         <div class="lang__circle">
           <img src="assets/en.png" alt="English" class="lang__flag"/>
@@ -38,7 +40,7 @@
         <span class="lang__label">EN</span>
       </div>
 
-      <!-- NL -->
+      <!-- Nederlands -->
       <div class="lang__item" [class.active]="lang==='nl'" (click)="setLang('nl')" role="tab" [attr.aria-selected]="lang==='nl'">
         <div class="lang__circle">
           <img src="assets/nl.png" alt="Nederlands" class="lang__flag"/>
@@ -48,10 +50,9 @@
     </div>
   </div>
 
-  <!-- Partie droite : vidéo -->
+  <!-- Partie vidéo -->
   <aside class="visual" aria-hidden="true">
-    <video #videoPlayer autoplay muted playsinline class="visual__video">
-    </video>
+    <video #videoPlayer autoplay muted playsinline class="visual__video"></video>
     <div class="visual__overlay"></div>
   </aside>
 </section>

@@ -1,6 +1,8 @@
-// menu.component.ts
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
+import { Location } from '@angular/common';
+import { TRANSLATIONS } from '../i18n/translation2';
+import { LanguageService } from '../services/language.service';
 
 @Component({
   selector: 'app-menu',
@@ -8,16 +10,37 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
-  lang: string = 'fr';
+  lang: 'fr' | 'en' | 'nl' = 'fr';
+  welcomeText!: string;
+  notesText!: string;
+  nameText!: string;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private router: Router, private location: Location, private languageService: LanguageService) {}
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe(params => {
-      if (params['lang']) {
-        this.lang = params['lang'];
-      }
+    // S'abonner aux changements de langue
+    this.languageService.currentLang$.subscribe(lang => {
+      this.lang = lang;
+      this.updateTranslations();
     });
   }
+
+  updateTranslations(): void {
+    const t = TRANSLATIONS[this.lang];
+    this.welcomeText = t.search?.welcome || 'Voulez-vous trouver votre parfum par :';
+    this.notesText = t.search?.notes || 'Notes';
+    this.nameText = t.search?.name || 'Nom du Parfum';
+  }
+
+  goBack(): void {
+    this.location.back();
+  }
+
+  searchByNotes(): void {
+    this.router.navigate(['/search-by-notes']);
+  }
+
+  searchByName(): void {
+    this.router.navigate(['/search-by-name']);
+  }
 }
-// menu.component.ts

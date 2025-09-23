@@ -1,0 +1,19 @@
+.focus-container {
+  position: relative;
+  display: flex;
+  gap: 1em;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.focus-word {
+  font-size: 3rem;
+  font-weight: 900;
+  cursor: pointer;
+  transition: filter 0.3s ease, color 0.3s ease;
+}
+
+.focus-word.active {
+  filter: blur(0);
+}

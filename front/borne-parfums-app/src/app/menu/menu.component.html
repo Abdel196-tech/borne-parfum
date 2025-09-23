@@ -1,9 +1,19 @@
-<!-- menu.component.html -->
-<h1>Bienvenue dans le Menu</h1>
-<p>Langue sélectionnée : {{ lang }}</p>
-<nav>
-  <ul>
-    <li><a routerLink="/welcome">Accueil</a></li>
-    <li><a routerLink="/menu">Menu</a></li>
-    <!-- Ajoutez d'autres liens de navigation ici -->
-  </ul>
+<button class="back-button" (click)="goBack()">←</button>
+
+<h1 class="welcome-text">{{ welcomeText }}</h1>
+
+<div class="search-options">
+  <div class="search-option" (click)="searchByNotes()">
+    <div class="icon-container">
+      <img src="assets/NNotes.png" alt="{{ notesText }}" class="icon-image">
+    </div>
+    <div class="option-label">{{ notesText }}</div>
+  </div>
+  
+  <div class="search-option" (click)="searchByName()">
+    <div class="icon-container">
+      <img src="assets/Parfum.png" alt="{{ nameText }}" class="icon-image">
+    </div>
+    <div class="option-label">{{ nameText }}</div>
+  </div>
+</div>

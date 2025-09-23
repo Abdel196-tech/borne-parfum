@@ -1,0 +1,112 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* centre tout verticalement */
+  min-height: 100vh;
+  padding: 20px;
+  background: #ecede9; /* fond principal */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.back-button {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: none;
+  border: none;
+  font-size: 90px;
+  color: #ddb563;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.back-button:hover {
+  color: #ddb563;
+}
+
+.welcome-text {
+  font-size: 50px;
+  color: #ddb563;
+  font-weight: 900;
+  text-align: center;
+  margin-bottom: 40px; /* réduit l’espace pour que tout soit centré */
+}
+
+.search-options {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 60px;
+  flex-wrap: wrap;
+}
+
+.search-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.search-option:hover {
+  transform: scale(1.05);
+}
+
+.icon-container {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  background: linear-gradient(125deg, #A9A18C 2%, #ddb563 88%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  margin-bottom: 20px; /* espace entre cercle et texte */
+}
+
+.search-option:hover .icon-container {
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+  transform: scale(1.05);
+}
+
+.icon-image {
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
+  border-radius: 50%;
+}
+
+.option-label {
+  font-size: 30px;
+  color: #7E7053;
+  font-weight: 700;
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .search-options {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .welcome-text {
+    font-size: 32px;
+    margin-bottom: 30px;
+  }
+
+  .icon-container {
+    width: 180px;
+    height: 180px;
+  }
+
+  .option-label {
+    font-size: 16px;
+  }
+}
