@@ -8,5 +8,6 @@ export const routes: Routes = [
     { path: 'menu', component: MenuComponent, data: { animation: 'MenuPage' } },
     { path: 'choice-notes', component: ChoiceNotesComponent, data: { animation: 'ChoiceNotesPage' } },
     { path: 'choice-parfum', component: ChoiceParfumComponent , data: { animation: 'ChoiceParfumPage' }}, // <-- nouvelle route
+    { path: 'welcome', component: WelcomeComponent },
     { path: '', redirectTo: 'home', pathMatch: 'full' }
   ];

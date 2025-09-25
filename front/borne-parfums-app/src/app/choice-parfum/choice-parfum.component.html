@@ -1,17 +1,21 @@
-<!-- choice-parfum.component.html -->
+<!-- Bouton Retour indépendant -->
+<button class="back-button" (click)="goBack()">← 
+  {{ backBtnText }}
+</button>
+
+<!-- Conteneur principal -->
 <div class="choice-parfum-container">
-  <button class="back-button" (click)="goBack()">←</button>
-  
-  <h1>Choisir un parfum par nom</h1>
+  <h1>{{MidTexte}}</h1>
   
   <div class="search-container">
     <input type="text" 
-           placeholder="Tapez le nom de votre parfum..." 
+           placeholder="{{SearchPlaceholder}}" 
+           [(ngModel)]="searchTerm"
            class="search-input">
   </div>
   
   <div class="parfum-list">
-    <p>Liste des parfums disponibles...</p>
+    <p>{{LastTexte}}.</p>
     <!-- Ici vous ajouterez plus tard la liste des parfums -->
   </div>
 </div>

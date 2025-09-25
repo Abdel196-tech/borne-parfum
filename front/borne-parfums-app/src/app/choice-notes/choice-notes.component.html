@@ -1,10 +1,10 @@
 <div class="header">
   <div class="nav-left">
-    <button class="home-btn" routerLink="/welcome">
-      <span>🏠</span> Accueil
+    <button class="home-btn" (click)="goHome()">
+      <span>🏠</span>  {{ homeBtnText }}
     </button>
     <button class="back-btn" (click)="goBack()">
-      <span>←</span> Retour
+      <span>←</span> {{ backBtnText }}
     </button>
   </div>
 </div>
@@ -12,24 +12,24 @@
 <div class="content">
   <!-- Titre -->
   <div class="title-section">
-    <h1 class="main-title">Choisis tes notes</h1>
-    <p class="subtitle">T'as le droit qu'à 5 notes</p>
+    <h1 class="main-title">{{ title }}</h1>
+    <p class="subtitle">{{ subtitle }}</p>
   </div>
 
   <!-- Section Notes Disponibles -->
   <div class="notes-section">
-    <h2 class="section-title">Notes disponibles</h2>
+    <h2 class="section-title">{{ availableTitle }}</h2>
 
     <!-- Scroll horizontal -->
     <div class="notes-scroll-container">
       <div class="note-circle-wrapper" 
            *ngFor="let note of availableNotes"
-           [class.selected]="isSelected(note.name)"
-           (click)="toggleNote(note.name)">
+           [class.selected]="isSelected(note.key)"
+           (click)="toggleNote(note.key)">
         <div class="note-circle">
-          <img [src]="note.img" alt="{{note.name}}">
+          <img [src]="note.img" alt="{{ getNoteName(note.key) }}">
         </div>
-        <span class="note-name">{{ note.name }}</span>
+        <span class="note-name">{{ getNoteName(note.key) }}</span>
       </div>
     </div>
   </div>
@@ -37,34 +37,34 @@
   <!-- Section Notes Sélectionnées -->
   <div class="selected-section">
     <div class="selected-header">
-      <h2 class="section-title">Les notes sélectionnées</h2>
-      <span class="counter">{{ selectedNotes.length }}/5</span>
+      <h2 class="section-title">{{ selectedTitle }}</h2>
+      <span class="counter">{{ selectedNotes.length }}/{{ maxNotes }}</span>
     </div>
 
     <div class="selected-notes">
       <div *ngIf="selectedNotes.length === 0" class="no-selection">
-        <p>Pas de notes sélectionnées</p>
+        <p>{{ noSelectionText }}</p>
       </div>
 
       <div *ngFor="let note of selectedNotes"
            class="selected-note-chip"
            (click)="removeNote(note)">
-        {{ note }} <span class="remove-btn">×</span>
+        {{ getNoteName(note) }} <span class="remove-btn">×</span>
       </div>
     </div>
 
-    <p class="max-info">5 notes maximum</p>
+    <p class="max-info">{{ maxInfoText }}</p>
   </div>
 
   <!-- Bouton Continuer -->
   <div class="continue-section">
     <p class="continue-message" *ngIf="selectedNotes.length === 0">
-      Sélectionne au moins une note pour continuer
+      {{ continueMsg }}
     </p>
     <button class="continue-btn"
             [disabled]="selectedNotes.length === 0"
             (click)="searchPerfumes()">
-      Trouve mon parfum
+      {{ continueBtnText }}
     </button>
   </div>
 </div>

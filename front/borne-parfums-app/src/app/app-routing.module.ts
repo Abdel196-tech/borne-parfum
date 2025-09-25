@@ -10,6 +10,7 @@ const routes: Routes = [
   { path: 'menu', component: MenuComponent },     // menu
   { path: 'choice-parfum', component: ChoiceParfumComponent }, // <-- nouvelle route
   { path: 'choice-notes', component: ChoiceNotesComponent }, // nouvelle page choix notes
+  { path: 'welcome', component: WelcomeComponent },
   { path: '**', redirectTo: '' } // redirection pour toute route inconnue vers accueil
 ];
 

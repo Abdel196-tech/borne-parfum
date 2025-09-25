@@ -2,6 +2,10 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-size: 1.5rem; /* 1rem = 10px */
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  color: #d4a574;
 }
 
 body {
@@ -29,9 +33,9 @@ body {
 .back-btn {
   background: none;
   border: none;
-  color: #6c757d;
+  color: #000000;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 1.5rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -43,54 +47,56 @@ body {
 .home-btn:hover,
 .back-btn:hover {
   background-color: #f8f9fa;
-  color: #495057;
+  color: #dfd113;
 }
 
 /* Content */
 .content {
-  max-width: 1600px;
+  max-width: 2100px;
   margin: 0 auto;
-  padding: 0 3rem;
+  padding: 0 4rem;
 }
 
 .title-section {
   text-align: center;
   margin-bottom: 4rem;
+  font-size: 2rem;
+  font-weight: 800;
 }
 
 .main-title {
-  font-size: 3rem;
-  font-weight: 600;
+  font-size: 5rem;
+  font-weight: 800;
   color: #d4a574;
   margin-bottom: 1rem;
 }
 
 .subtitle {
-  color: #6c757d;
-  font-size: 1.5rem;
-  font-weight: 400;
+  color: #000000;
+  font-size: 2.5rem;
+  font-weight: 700;
 }
 
 /* Section Notes Disponibles */
 .notes-section {
-  background: white;
+  background: linear-gradient(110deg, #fdf3e7 20%, #f9f1e4 70%);
   border-radius: 16px;
   padding: 3rem;
   box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
 }
 
 .section-title {
-  font-size: 1.8rem;
+  font-size: 2.6rem;
   font-weight: 600;
-  color: #495057;
-  margin-bottom: 2rem;
+  color: #000000;
+  margin-bottom: 1.2rem;
 }
 
 /* Scroll horizontal pour les notes */
 .notes-scroll-container {
   display: flex;
   overflow-x: auto;
-  gap: 2rem;
+  gap: 3rem;
   padding-bottom: 1rem;
 }
 
@@ -99,12 +105,12 @@ body {
 }
 
 .notes-scroll-container::-webkit-scrollbar-thumb {
-  background: #d4a574;
+  background: #f3d7a9;
   border-radius: 5px;
 }
 
 .notes-scroll-container::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: #fff8f8;
 }
 
 /* Cercles des notes */
@@ -147,9 +153,10 @@ body {
 
 .note-name {
   margin-top: 0.75rem;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
+  font-weight: 600;
   text-align: center;
-  color: #495057;
+  color: #000000;
 }
 
 .note-circle-wrapper.selected .note-name {
@@ -174,13 +181,18 @@ body {
 }
 
 .counter {
-  background: #e9ecef;
-  color: #6c757d;
+  background: #f9f1e4;
+  color: #000000;
   padding: 0.4rem 1rem;
   border-radius: 25px;
-  font-size: 1rem;
-  font-weight: 500;
-}
+  font-size: 1.5rem;
+  font-weight: 800;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;  
+  min-width: 60px;
+  }
 
 .selected-notes {
   display: flex;
@@ -194,14 +206,14 @@ body {
   align-items: center;
   justify-content: center;
   width: 100%;
-  color: #6c757d;
+  color: #000000;
   font-style: italic;
   font-size: 1rem;
 }
 
 .selected-note-chip {
-  background: #f8f9fa;
-  border: 1px solid #dee2e6;
+  background: #f9f1e4;
+  border: 1px solid #d4a574;
   border-radius: 30px;
   padding: 0.75rem 1.5rem;
   display: flex;
@@ -209,16 +221,18 @@ body {
   gap: 0.75rem;
   cursor: pointer;
   transition: all 0.2s;
-  font-size: 1rem;
+  font-size: 1.4rem;
+  font-weight: 800;
+  
 }
 
 .selected-note-chip:hover {
-  background: #e9ecef;
-  border-color: #d4a574;
+  background: #000000;
+  border-color: #000000;
 }
 
 .remove-btn {
-  color: #6c757d;
+  color: #000000;
   font-weight: bold;
   font-size: 1.5rem;
   line-height: 1;
@@ -229,22 +243,24 @@ body {
 }
 
 .max-info {
-  color: #6c757d;
-  font-size: 1rem;
+  color: #000000;
+  font-size: 1.7rem;
   text-align: center;
   margin-top: 1.5rem;
+  font-weight: 700;
 }
 
 /* Section Continuer */
 .continue-section {
   text-align: center;
-  margin-top: 3rem;
+  margin-top: 4rem;
 }
 
 .continue-message {
-  color: #6c757d;
-  font-size: 1.2rem;
-  margin-bottom: 1rem;
+  color: #000000;
+  font-size: 1.3rem;
+  margin-bottom: 1.5rem;
+  color: #d4a574;
 }
 
 .continue-btn {
@@ -253,12 +269,13 @@ body {
   border: none;
   padding: 1.5rem 3rem;
   border-radius: 30px;
-  font-size: 1.2rem;
+  font-size: 1.7rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 5px 20px rgba(212, 165, 116, 0.3);
-  min-width: 250px;
+  min-width: 380px;
+
 }
 
 .continue-btn:hover:not(:disabled) {
@@ -267,8 +284,8 @@ body {
 }
 
 .continue-btn:disabled {
-  background: #e9ecef;
-  color: #6c757d;
+  background:linear-gradient(135deg, #d4a574 0%, #b8956a 100%);
+  color: #ffffff;
   cursor: not-allowed;
   box-shadow: none;
   transform: none;

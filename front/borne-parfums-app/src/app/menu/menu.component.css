@@ -32,14 +32,14 @@
   color: #ddb563;
   font-weight: 900;
   text-align: center;
-  margin-bottom: 40px; /* réduit l’espace pour que tout soit centré */
+  margin-bottom: 90px; /* réduit l’espace pour que tout soit centré */
 }
 
 .search-options {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 60px;
+  gap: 160px;
   flex-wrap: wrap;
 }
 
