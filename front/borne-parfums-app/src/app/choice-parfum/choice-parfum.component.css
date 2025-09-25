@@ -1,0 +1,50 @@
+/* choice-parfum.component.css */
+.choice-parfum-container {
+  padding: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.back-button {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.back-button:hover {
+  color: #007bff;
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.search-container {
+  margin-bottom: 30px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.parfum-list {
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 20px;
+  background-color: #f9f9f9;
+}

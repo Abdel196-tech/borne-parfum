@@ -47,8 +47,10 @@ export class MenuComponent implements OnInit {
   }
 
   // Redirection vers la page de choix par Parfum (anciennement /search-by-name)
-  searchByName(): void {
-    console.log("Redirection vers la page de choix par Parfum");
-    this.router.navigate(['/choice-parfum']); // <-- modifié ici
+  goToParfum() {
+    this.router.navigate(['/choice-parfum']);
   }
 }
+
+
+

@@ -14,8 +14,8 @@ import { CommonModule } from '@angular/common';
     AppComponent,
     WelcomeComponent,
     MenuComponent,
-    ChoiceNotesComponent,
-    ChoiceParfumComponent
+    ChoiceParfumComponent,
+    ChoiceNotesComponent
   ],
   imports: [
     BrowserModule,
