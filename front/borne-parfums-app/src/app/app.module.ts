@@ -8,14 +8,15 @@ import { MenuComponent } from './menu/menu.component';
 import { ChoiceNotesComponent } from './choice-notes/choice-notes.component';
 import { ChoiceParfumComponent } from './choice-parfum/choice-parfum.component';
 import { CommonModule } from '@angular/common';
-
+import { ResultComponent } from './result/result.component';
 @NgModule({
   declarations: [
     AppComponent,
     WelcomeComponent,
     MenuComponent,
     ChoiceParfumComponent,
-    ChoiceNotesComponent
+    ChoiceNotesComponent,
+    ResultComponent
   ],
   imports: [
     BrowserModule,
