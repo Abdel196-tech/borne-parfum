@@ -1,49 +1,20 @@
-<div class="perfume-container">
-  <div class="perfume-grid">
-    <div 
-      class="perfume-card" 
-      *ngFor="let perfume of perfumes"
-      [style.background]="'linear-gradient(135deg, ' + perfume.backgroundColor + '80, ' + perfume.backgroundColor + 'CC)'"
-    >
-      <div class="background-overlay">
-        <div class="bottle-container">
-          <div class="bottle" [style.background-color]="perfume.bottleColor">
-            <div class="bottle-cap" [style.background-color]="perfume.capColor"></div>
-            <div class="bottle-logo">
-              <div class="logo-crest"></div>
-            </div>
-            <div class="bottle-label">
-              <div class="brand-name">{{ perfume.name.toUpperCase() }}</div>
-              <div class="product-line">PARFUMS DE MARLY</div>
-            </div>
-          </div>
-        </div>
+<div class="perfume-grid">
+  <div class="perfume-card" *ngFor="let p of recommendations">
+    <div class="perfume-image" [style.background-image]="'url(assets/' + (p.Perfume) + '.png)'">
+    </div>
+
+    <div class="perfume-info">
+      <h3 class="perfume-name">{{ p.Perfume }}</h3>
+      <p class="perfume-brand">{{ p.Brand }}</p>
+
+      <!-- Notes principales -->
+      <div class="notes">
+        <p><strong>Top Notes:</strong> {{ p['Top Notes'] }}</p>
+        <p><strong>Middle Notes:</strong> {{ p['Middle Notes'] }}</p>
+        <p><strong>Base Notes:</strong> {{ p['Base Notes'] }}</p>
       </div>
-      
-      <div class="card-content">
-        <h2 class="perfume-name">{{ perfume.name }}</h2>
-        <p class="perfume-year">{{ perfume.year }}</p>
-        <p class="perfume-type">{{ perfume.type }}</p>
-        
-        <div class="intensity-section">
-          <span class="intensity-label">Intensity</span>
-          <div class="intensity-dots">
-            <div 
-              *ngFor="let dot of getIntensityDots(4); let i = index"
-              [class]="getIntensityClass(perfume.intensity, i)"
-            ></div>
-          </div>
-        </div>
-        
-        <div class="descriptors">
-          <span 
-            class="descriptor" 
-            *ngFor="let descriptor of perfume.descriptors"
-          >
-            {{ descriptor }}
-          </span>
-        </div>
-      </div>
+
+      <a [href]="p.URL" target="_blank" class="btn-link">Voir le produit</a>
     </div>
   </div>
 </div>

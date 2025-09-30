@@ -7,8 +7,10 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { MenuComponent } from './menu/menu.component';
 import { ChoiceNotesComponent } from './choice-notes/choice-notes.component';
 import { ChoiceParfumComponent } from './choice-parfum/choice-parfum.component';
-import { CommonModule } from '@angular/common';
 import { ResultComponent } from './result/result.component';
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +23,8 @@ import { ResultComponent } from './result/result.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    CommonModule
+    CommonModule,
+    HttpClientModule // 🔹 doit être ici, pas dans declarations
   ],
   providers: [],
   bootstrap: [AppComponent]

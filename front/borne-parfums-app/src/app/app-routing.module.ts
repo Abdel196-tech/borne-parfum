@@ -5,12 +5,14 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { MenuComponent } from './menu/menu.component';
 import { ChoiceNotesComponent } from './choice-notes/choice-notes.component'; // <-- import du nouveau composant
 import { ChoiceParfumComponent } from './choice-parfum/choice-parfum.component'; // Import your component
+import { ResultComponent } from './result/result.component';
 const routes: Routes = [
   { path: '', component: WelcomeComponent },      // page d'accueil
   { path: 'menu', component: MenuComponent },     // menu
   { path: 'choice-parfum', component: ChoiceParfumComponent }, // <-- nouvelle route
   { path: 'choice-notes', component: ChoiceNotesComponent }, // nouvelle page choix notes
   { path: 'welcome', component: WelcomeComponent },
+  { path: 'result', component: ResultComponent },
   { path: '**', redirectTo: '' } // redirection pour toute route inconnue vers accueil
 ];
 

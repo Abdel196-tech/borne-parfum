@@ -1,9 +1,11 @@
+// choice-notes.component.ts
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { CommonModule } from '@angular/common';
 import { TRANSLATIONS } from '../i18n/translation3';
 import { LanguageService } from '../services/language.service';
+import { PerfumeService } from '../services/perfume.service'; 
 @Component({
   selector: 'app-choice-notes',
   templateUrl: './choice-notes.component.html',
@@ -47,7 +49,8 @@ availableNotes = [
   constructor(
     private router: Router, 
     private location: Location,
-    private languageService: LanguageService
+    private languageService: LanguageService,
+    private perfumeService: PerfumeService 
   ) { }
 
   ngOnInit(): void {
@@ -112,11 +115,19 @@ availableNotes = [
     }
   }
 
-  searchPerfumes(): void {
-    if (this.selectedNotes.length > 0) {
-      this.router.navigate(['/perfume-results'], {
-        queryParams: { notes: this.selectedNotes.join(',') }
+ searchPerfumes(): void {
+  if (this.selectedNotes.length > 0) {
+    console.log('Notes envoyées à lAPI:', this.selectedNotes);
+    this.perfumeService.getRecommendations(this.selectedNotes)
+      .subscribe({
+        next: (res) => {
+          console.log('Réponse API:', res);
+          // Naviguer vers ResultComponent avec les recommandations
+          this.router.navigate(['/result'], { state: { recommendations: res.recommendations } });
+        },
+        error: (err) => console.error('Erreur API:', err)
       });
-    }
   }
+}
+
 }
