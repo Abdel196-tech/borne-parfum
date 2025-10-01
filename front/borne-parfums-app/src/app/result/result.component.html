@@ -1,13 +1,13 @@
 <div class="perfume-grid">
   <div class="perfume-card" *ngFor="let p of recommendations">
-    <div class="perfume-image" [style.background-image]="'url(assets/' + (p.Perfume) + '.png)'">
+    <div class="perfume-image"
+         [style.background-image]="'url(assets/' + encode(p.Perfume || 'default') + '.png)'">
     </div>
 
     <div class="perfume-info">
       <h3 class="perfume-name">{{ p.Perfume }}</h3>
       <p class="perfume-brand">{{ p.Brand }}</p>
 
-      <!-- Notes principales -->
       <div class="notes">
         <p><strong>Top Notes:</strong> {{ p['Top Notes'] }}</p>
         <p><strong>Middle Notes:</strong> {{ p['Middle Notes'] }}</p>
