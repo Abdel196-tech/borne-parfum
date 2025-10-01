@@ -1,57 +1,72 @@
-.perfume-grid {
-  display: grid;
-  grid-template-columns: repeat(10, 1fr); /* 10 parfums par rangée */
-  gap: 20px;
-  justify-content: center;
-  margin: 0 auto;
-  max-width: 2200px; /* largeur totale de la grille */
-  padding: 2rem 0;
+/* Conteneur scrollable */
+html, body {
+  height: 100%;
+  margin: 0;
 }
 
-.perfume-card {
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  background: #f8f9fa;
+.container {
   display: flex;
-  flex-direction: column;
-  text-align: center;
-  border: 1px solid #e0d3b8;
-  transition: transform 0.2s, box-shadow 0.2s;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
 }
 
-.perfume-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(212, 165, 116, 0.3);
+.perfume-scroll {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+  gap: 40px;                /* plus d'espace entre les cartes */
+  padding: 2rem;
+  scroll-behavior: smooth;
+  box-sizing: border-box;
+  max-height: 90vh;
+  max-width: 95vw;
 }
+
+/* Chaque parfum - dimensions augmentées */
+.perfume-card {
+  flex: 0 0 auto;
+  width: 450px;             /* largeur augmentée pour 4 parfums visibles */
+  background: transparent;
+  text-align: center;
+  padding: 20px;
+}
+
+/* Image - plus grande */
 .perfume-image {
   width: 100%;
-  height: 150px; /* au lieu de 200px */
-  background-size: contain; /* pour éviter de couper l’image */
-  background-repeat: no-repeat; 
+  height: 400px;            /* hauteur augmentée */
+  background-size: contain;
+  background-repeat: no-repeat;
   background-position: center;
 }
 
+/* Infos */
 .perfume-info {
-  padding: 1rem;
+  margin-top: 20px;
 }
 
 .perfume-name {
-  font-weight: 700;
-  margin: 5px 0;
-  color: #d4a574;
-  font-size: 1.2rem;
+  font-weight: 800;
+  margin: 10px 0;
+  color: #333;
+  font-size: 1.8rem;        /* texte plus grand */
 }
 
 .perfume-brand {
-  font-size: 0.9rem;
-  color: #000;
-  margin-bottom: 0.5rem;
+  font-size: 1.8rem;   
+  font-weight: 400;     /* texte plus grand */
+  color: #000000;
+  margin-bottom: 1rem;
 }
 
 .notes p {
-  font-size: 0.85rem;
-  margin: 2px 0;
+  margin-top: 3rem;
+  font-size: 1.3rem;        /* texte plus grand */
+  margin: 10px 0;
+  line-height: 1.2;
   color: #000;
 }
 
@@ -59,52 +74,41 @@
   color: #d4a574;
 }
 
+/* Bouton - plus grand */
 .btn-link {
   display: inline-block;
-  margin-top: 8px;
-  padding: 6px 12px;
+  margin-top: 15px;
+  padding: 12px 24px;       /* bouton plus grand */
   background: linear-gradient(135deg, #d4a574 0%, #b8956a 100%);
   color: white;
-  border-radius: 6px;
+  border-radius: 8px;
   text-decoration: none;
   font-weight: 600;
-  transition: background 0.2s;
+  font-size: 1.1rem;        /* texte bouton plus grand */
+  transition: all 0.3s ease;
 }
 
 .btn-link:hover {
   background: linear-gradient(135deg, #b8956a 0%, #d4a574 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(212, 165, 116, 0.3);
 }
 
-/* Responsive */
-@media (max-width: 1800px) {
-  .perfume-grid {
-    grid-template-columns: repeat(5, 1fr);
-  }
+/* Personnalisation de la scrollbar */
+.perfume-scroll::-webkit-scrollbar {
+  height: 12px;
 }
 
-@media (max-width: 1200px) {
-  .perfume-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
+.perfume-scroll::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
 }
 
-@media (max-width: 768px) {
-  .perfume-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
-  }
-
-  .perfume-name {
-    font-size: 1rem;
-  }
+.perfume-scroll::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #d4a574 0%, #b8956a 100%);
+  border-radius: 10px;
 }
 
-@media (max-width: 480px) {
-  .perfume-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .perfume-image {
-    height: 150px;
-  }
+.perfume-scroll::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #b8956a 0%, #d4a574 100%);
 }

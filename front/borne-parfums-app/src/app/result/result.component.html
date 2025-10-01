@@ -1,20 +1,22 @@
-<div class="perfume-grid">
-  <div class="perfume-card" *ngFor="let p of recommendations">
-    <div class="perfume-image"
-         [style.background-image]="'url(assets/' + encode(p.Perfume || 'default') + '.png)'">
-    </div>
-
-    <div class="perfume-info">
-      <h3 class="perfume-name">{{ p.Perfume }}</h3>
-      <p class="perfume-brand">{{ p.Brand }}</p>
-
-      <div class="notes">
-        <p><strong>Top Notes:</strong> {{ p['Top Notes'] }}</p>
-        <p><strong>Middle Notes:</strong> {{ p['Middle Notes'] }}</p>
-        <p><strong>Base Notes:</strong> {{ p['Base Notes'] }}</p>
+<div class="container">
+  <div class="perfume-scroll">
+    <div class="perfume-card" *ngFor="let p of recommendations">
+      <div class="perfume-image"
+           [style.background-image]="'url(assets/' + encode(p.Perfume || 'default') + '.png)'">
       </div>
 
-      <a [href]="p.URL" target="_blank" class="btn-link">Voir le produit</a>
+      <div class="perfume-info">
+        <h3 class="perfume-name">{{ p.Perfume }}</h3>
+        <p class="perfume-brand">{{ p.Brand }}</p>
+
+        <div class="notes">
+          <p><strong>Top Notes:</strong> {{ p['Top Notes'] }}</p>
+          <p><strong>Middle Notes:</strong> {{ p['Middle Notes'] }}</p>
+          <p><strong>Base Notes:</strong> {{ p['Base Notes'] }}</p>
+        </div>
+
+        <a [href]="p.URL" target="_blank" class="btn-link">Voir le produit</a>
+      </div>
     </div>
   </div>
 </div>
