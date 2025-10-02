@@ -112,7 +112,7 @@ html, body {
 
 .info p {
   margin-top: 3rem;
-  font-size: 1.3rem;        /* texte plus grand */
+  font-size: 1.5rem;        /* texte plus grand */
   margin: 10px 0;
   line-height: 1.2;
   color: #000;
@@ -160,6 +160,7 @@ html, body {
 .perfume-scroll::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(135deg, #b8956a 0%, #d4a574 100%);
 }
+
 /* Modal overlay flou */
 .perfume-modal {
   position: fixed;
@@ -173,36 +174,43 @@ html, body {
   justify-content: center;
   align-items: center;
   z-index: 2000;
+  padding: 1rem;
 }
 
 /* Contenu modal */
 .perfume-modal-content {
   background: white;
-  padding: 2rem;
+  padding: 3rem;
   border-radius: 20px;
-  max-width: 600px;
-  width: 90%;
+  max-width: 1200px;
+  width: 100%;
   text-align: center;
   box-shadow: 0 10px 30px rgba(0,0,0,0.3);
   animation: fadeIn 0.3s ease-out;
 }
 
 /* Image du parfum dans la modal */
+/* Image du parfum dans la modal */
 .modal-image {
-  width: 200px;
-  height: 200px;
-  margin: 0 auto 1.5rem auto;
+  flex: 1;
+  min-width: 300px;
+  height: 400px;       /* ✅ plus grand */
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+  border-radius: 15px;
 }
-
 /* Texte modal */
 .perfume-modal-content h2 {
   font-size: 2rem;
   font-weight: 800;
   color: #d4a574;
   margin-bottom: 0.5rem;
+}
+/* Section texte */
+.modal-details {
+  flex: 2;
+  text-align: left;
 }
 
 .perfume-modal-content .brand {
@@ -238,6 +246,116 @@ html, body {
 .close-btn:hover {
   background: linear-gradient(135deg, #b8956a 0%, #d4a574 100%);
   transform: translateY(-2px);
+}
+.accords {
+  margin-top: 2rem;
+}
+
+.accord-bar {
+  margin-bottom: 1.2rem;
+}
+
+.accord-label {
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+  display: block;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.bar-container {
+  width: 100%;
+  height: 20px;
+  background: #f1f1f1;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  border-radius: 20px;
+  background-size: cover;
+  background-position: center;
+  transition: width 0.6s ease;
+}
+
+/* Styles pour les accords avec images */
+.accords {
+  margin: 20px 0;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 12px;
+}
+
+/* Styles pour les accords avec images */
+
+
+.accords h3 {
+  margin: 0 0 15px 0;
+  color: #333;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+.accord-item {
+  margin-bottom: 20px;
+}
+.accord-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.accord-name {
+  font-weight: 600;
+  color: #555;
+  font-size: 0.95rem;
+  text-transform: capitalize;
+}
+.accord-percentage {
+  font-weight: 700;
+  color: #8b5cf6;
+  font-size: 0.9rem;
+  background: white;
+  padding: 2px 8px;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.accord-bar-container {
+  width: 100%;
+  height: 40px;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+  position: relative;
+}
+.accord-bar-fill {
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 8px;
+  transition: width 0.6s ease;
+  position: relative;
+  overflow: hidden;
+}
+/* Effet overlay pour améliorer la lisibilité */
+.accord-bar-fill::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to right, 
+    rgba(139, 92, 246, 0.3), 
+    rgba(139, 92, 246, 0.1));
+  pointer-events: none;
+}
+
+/* Animation au hover */
+.accord-item:hover .accord-bar-fill {
+  filter: brightness(1.1);
 }
 /* Responsive */
 @media (max-width: 768px) {

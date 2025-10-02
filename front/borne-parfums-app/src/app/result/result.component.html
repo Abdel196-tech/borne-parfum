@@ -1,4 +1,4 @@
-<div class="header">
+ <div class="header">
   <div class="nav-left">
     <button class="back-btn" onclick="history.back()">⬅ Retour</button>
     <button class="home-btn" onclick="window.location.href='/'">🏠 Accueil</button>
@@ -32,14 +32,32 @@
 <!-- Modal affichée si un parfum est sélectionné -->
 <div class="perfume-modal" *ngIf="selectedPerfume" (click)="closePerfume()">
   <div class="perfume-modal-content" (click)="$event.stopPropagation()">
-    <div class="modal-image" [style.background-image]="'url(assets/' + encode(selectedPerfume.Perfume || 'default') + '.png)'"></div>
+    <div class="modal-image"
+         [style.background-image]="'url(assets/' + encode(selectedPerfume.Perfume || 'default') + '.png)'">
+    </div>
+
     <h2>{{ selectedPerfume.Perfume }}</h2>
     <p class="brand">{{ selectedPerfume.Brand }}</p>
     <p><strong>Year:</strong> {{ selectedPerfume.Year }}</p>
-    <p><strong>Accords:</strong> {{ selectedPerfume.Accords }}</p>
+
+    <div class="accords">
+      <h3>Accords</h3>
+      <div class="accord-bar" *ngFor="let acc of getAccords(selectedPerfume)">
+        <span class="accord-label">{{ acc.name }} ({{ acc.value }}%)</span>
+        <div class="bar-container">
+          <div class="bar-fill"
+               [ngStyle]="{
+                 'width': acc.value + '%',
+                 'background-image': 'url(assets/' + encode(acc.name)+ '.jpg)'
+               }">
+          </div>
+        </div>
+      </div>
+    </div>
     <p><strong>Top Notes:</strong> {{ selectedPerfume['Top Notes'] }}</p>
     <p><strong>Middle Notes:</strong> {{ selectedPerfume['Middle Notes'] }}</p>
     <p><strong>Base Notes:</strong> {{ selectedPerfume['Base Notes'] }}</p>
+
     <button class="close-btn" (click)="closePerfume()">Fermer</button>
   </div>
 </div>
