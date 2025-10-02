@@ -1,6 +1,13 @@
+<div class="header">
+  <div class="nav-left">
+    <button class="back-btn" onclick="history.back()">⬅ Retour</button>
+    <button class="home-btn" onclick="window.location.href='/'">🏠 Accueil</button>
+  </div>
+</div>
+
 <div class="container">
   <div class="perfume-scroll">
-    <div class="perfume-card" *ngFor="let p of recommendations">
+    <div class="perfume-card" *ngFor="let p of recommendations" (click)="openPerfume(p)">
       <div class="perfume-image"
            [style.background-image]="'url(assets/' + encode(p.Perfume || 'default') + '.png)'">
       </div>
@@ -9,14 +16,30 @@
         <h3 class="perfume-name">{{ p.Perfume }}</h3>
         <p class="perfume-brand">{{ p.Brand }}</p>
 
-        <div class="notes">
-          <p><strong>Top Notes:</strong> {{ p['Top Notes'] }}</p>
-          <p><strong>Middle Notes:</strong> {{ p['Middle Notes'] }}</p>
-          <p><strong>Base Notes:</strong> {{ p['Base Notes'] }}</p>
+        <div class="info">
+          <p><strong>Longevity:</strong> {{ p['Longevity'] }}</p>
+          <p><strong>Sillage :</strong> {{ p['Sillage'] }}</p>
+          <p><strong>Vitrine:</strong> {{ p['Vitrine'] }}</p>
+          <p><strong>Similarity_Rank:</strong> {{ p['Similarity_Rank'] }}</p>
         </div>
 
         <a [href]="p.URL" target="_blank" class="btn-link">Voir le produit</a>
       </div>
     </div>
+  </div>
+</div>
+
+<!-- Modal affichée si un parfum est sélectionné -->
+<div class="perfume-modal" *ngIf="selectedPerfume" (click)="closePerfume()">
+  <div class="perfume-modal-content" (click)="$event.stopPropagation()">
+    <div class="modal-image" [style.background-image]="'url(assets/' + encode(selectedPerfume.Perfume || 'default') + '.png)'"></div>
+    <h2>{{ selectedPerfume.Perfume }}</h2>
+    <p class="brand">{{ selectedPerfume.Brand }}</p>
+    <p><strong>Year:</strong> {{ selectedPerfume.Year }}</p>
+    <p><strong>Accords:</strong> {{ selectedPerfume.Accords }}</p>
+    <p><strong>Top Notes:</strong> {{ selectedPerfume['Top Notes'] }}</p>
+    <p><strong>Middle Notes:</strong> {{ selectedPerfume['Middle Notes'] }}</p>
+    <p><strong>Base Notes:</strong> {{ selectedPerfume['Base Notes'] }}</p>
+    <button class="close-btn" (click)="closePerfume()">Fermer</button>
   </div>
 </div>

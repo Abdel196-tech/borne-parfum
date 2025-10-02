@@ -1,4 +1,52 @@
 /* Conteneur scrollable */
+/* Header container */
+.header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 1.5rem 3rem;
+  background: white;
+  border-bottom: 1px solid #e9ecef;
+  margin-bottom: 2rem;
+}
+
+/* Groupe des boutons */
+.nav-left {
+  display: flex;
+  gap: 1.5rem;
+}
+
+/* Boutons Accueil & Retour */
+.home-btn,
+.back-btn {
+  background: linear-gradient(135deg, #d4a574 0%, #b8956a 100%);
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 1.2rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.6rem;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(212, 165, 116, 0.3);
+}
+
+
+.back-btn::before {
+  content: "⬅";
+}
+
+/* Hover effect */
+.home-btn:hover,
+.back-btn:hover {
+  background: linear-gradient(135deg, #b8956a 0%, #d4a574 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(212, 165, 116, 0.4);
+}
+
 html, body {
   height: 100%;
   margin: 0;
@@ -62,7 +110,7 @@ html, body {
   margin-bottom: 1rem;
 }
 
-.notes p {
+.info p {
   margin-top: 3rem;
   font-size: 1.3rem;        /* texte plus grand */
   margin: 10px 0;
@@ -70,7 +118,7 @@ html, body {
   color: #000;
 }
 
-.notes strong {
+.info strong {
   color: #d4a574;
 }
 
@@ -111,4 +159,96 @@ html, body {
 
 .perfume-scroll::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(135deg, #b8956a 0%, #d4a574 100%);
+}
+/* Modal overlay flou */
+.perfume-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+/* Contenu modal */
+.perfume-modal-content {
+  background: white;
+  padding: 2rem;
+  border-radius: 20px;
+  max-width: 600px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Image du parfum dans la modal */
+.modal-image {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto 1.5rem auto;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* Texte modal */
+.perfume-modal-content h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #d4a574;
+  margin-bottom: 0.5rem;
+}
+
+.perfume-modal-content .brand {
+  font-size: 1.3rem;
+  margin-bottom: 1.5rem;
+  color: #000;
+}
+
+.perfume-modal-content p {
+  margin: 0.5rem 0;
+  font-size: 1.1rem;
+  color: #000;
+}
+
+.perfume-modal-content strong {
+  color: #d4a574;
+}
+
+/* Bouton fermer */
+.close-btn {
+  margin-top: 1.5rem;
+  padding: 0.8rem 1.5rem;
+  background: linear-gradient(135deg, #d4a574 0%, #b8956a 100%);
+  color: white;
+  border: none;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.close-btn:hover {
+  background: linear-gradient(135deg, #b8956a 0%, #d4a574 100%);
+  transform: translateY(-2px);
+}
+/* Responsive */
+@media (max-width: 768px) {
+  .home-btn,
+  .back-btn {
+    font-size: 1rem;
+    padding: 0.6rem 1.2rem;
+  }
+}
+/* Animation apparition */
+@keyframes fadeIn {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
 }

@@ -1,4 +1,3 @@
-// result.component.ts
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
@@ -12,6 +11,7 @@ import { Router } from '@angular/router';
 })
 export class ResultComponent {
   recommendations: any[] = [];
+  selectedPerfume: any = null; // ✅ variable modal
 
   constructor(private router: Router) {}
 
@@ -30,5 +30,15 @@ export class ResultComponent {
   // ✅ Méthode pour encoder correctement les noms de fichiers
   encode(name: string): string {
     return encodeURIComponent(name);
+  }
+
+  // ✅ Ouvrir la modal
+  openPerfume(perfume: any) {
+    this.selectedPerfume = perfume;
+  }
+
+  // ✅ Fermer la modal
+  closePerfume() {
+    this.selectedPerfume = null;
   }
 }
