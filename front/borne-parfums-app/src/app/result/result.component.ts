@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-result',
@@ -12,7 +13,7 @@ import { Router } from '@angular/router';
 export class ResultComponent {
   recommendations: any[] = [];
   selectedPerfume: any = null; // ✅ variable modal
-
+  @ViewChild('scrollContainer') scrollContainer!: ElementRef<HTMLDivElement>;
   constructor(private router: Router) {}
 
   ngOnInit(): void {
@@ -32,15 +33,7 @@ export class ResultComponent {
     return encodeURIComponent(name);
   }
 
-  // ✅ Ouvrir la modal
-  openPerfume(perfume: any) {
-    this.selectedPerfume = perfume;
-  }
-
-  // ✅ Fermer la modal
-  closePerfume() {
-    this.selectedPerfume = null;
-  }
+ 
   parseAccords(raw: any): { name: string; value: number }[] {
   if (!raw) return [];
 
@@ -72,4 +65,37 @@ export class ResultComponent {
   getAccords(perfume: any) {
   return this.parseAccords(perfume?.Accords);
   }
+  showNotes: boolean = false;
+
+  openPerfume(p: any) {
+  this.selectedPerfume = p;
+  this.showNotes = true; // Toujours commencer sur la vue accords
+}
+
+  closePerfume() {
+  this.selectedPerfume = null;
+  this.showNotes = false;
+}
+  // ✅ AJOUT DES MÉTHODES SCROLL
+  scrollRight() {
+    if (this.scrollContainer) {
+      this.scrollContainer.nativeElement.scrollBy({
+        left: this.scrollContainer.nativeElement.offsetWidth,
+        behavior: 'smooth'
+      });
+    }
+  }
+
+  scrollLeft() {
+    if (this.scrollContainer) {
+      this.scrollContainer.nativeElement.scrollBy({
+        left: -this.scrollContainer.nativeElement.offsetWidth,
+        behavior: 'smooth'
+      });
+    }
+  }
+  getNotesArray(noteString: string): string[] {
+  if (!noteString) return [];
+  return noteString.split(',').map(n => n.trim());
+}
 }

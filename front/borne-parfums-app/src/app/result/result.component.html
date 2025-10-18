@@ -1,4 +1,4 @@
- <div class="header">
+<div class="header">
   <div class="nav-left">
     <button class="back-btn" onclick="history.back()">⬅ Retour</button>
     <button class="home-btn" onclick="window.location.href='/'">🏠 Accueil</button>
@@ -8,8 +8,9 @@
 <div class="container">
   <div class="perfume-scroll">
     <div class="perfume-card" *ngFor="let p of recommendations" (click)="openPerfume(p)">
-      <div class="perfume-image"
-           [style.background-image]="'url(assets/' + encode(p.Perfume || 'default') + '.png)'">
+      <div
+        class="perfume-image"
+        [style.background-image]="'url(assets/' + encode(p.Perfume || 'default') + '.png)'">
       </div>
 
       <div class="perfume-info">
@@ -29,35 +30,100 @@
   </div>
 </div>
 
-<!-- Modal affichée si un parfum est sélectionné -->
+<!-- Modal -->
 <div class="perfume-modal" *ngIf="selectedPerfume" (click)="closePerfume()">
   <div class="perfume-modal-content" (click)="$event.stopPropagation()">
-    <div class="modal-image"
-         [style.background-image]="'url(assets/' + encode(selectedPerfume.Perfume || 'default') + '.png)'">
-    </div>
 
-    <h2>{{ selectedPerfume.Perfume }}</h2>
-    <p class="brand">{{ selectedPerfume.Brand }}</p>
-    <p><strong>Year:</strong> {{ selectedPerfume.Year }}</p>
+    <div class="modal-body">
 
-    <div class="accords">
-      <h3>Accords</h3>
-      <div class="accord-bar" *ngFor="let acc of getAccords(selectedPerfume)">
-        <span class="accord-label">{{ acc.name }} ({{ acc.value }}%)</span>
-        <div class="bar-container">
-          <div class="bar-fill"
-               [ngStyle]="{
-                 'width': acc.value + '%',
-                 'background-image': 'url(assets/' + encode(acc.name)+ '.jpg)'
-               }">
+      <!-- Partie gauche -->
+      <div class="modal-left">
+        <div
+          class="modal-image"
+          [style.background-image]="'url(assets/' + encode(selectedPerfume.Perfume || 'default') + '.png)'">
+        </div>
+
+        <div class="image-info">
+          <img
+            class="brand-logo"
+            [src]="'assets/' + encode(selectedPerfume.Brand || 'default') + '.png'"
+            alt="{{ selectedPerfume.Brand }} logo">
+          <div class="text-info">
+            <h2 class="perfume-name">{{ selectedPerfume.Perfume }}</h2>
           </div>
         </div>
       </div>
-    </div>
-    <p><strong>Top Notes:</strong> {{ selectedPerfume['Top Notes'] }}</p>
-    <p><strong>Middle Notes:</strong> {{ selectedPerfume['Middle Notes'] }}</p>
-    <p><strong>Base Notes:</strong> {{ selectedPerfume['Base Notes'] }}</p>
 
-    <button class="close-btn" (click)="closePerfume()">Fermer</button>
+      <!-- Partie droite avec scroll horizontal -->
+      <div class="modal-details">
+        <div class="scroll-container" #scrollContainer>
+
+          <!-- NOTES en premier -->
+          <div class="scroll-section notes">
+            <h3>Notes</h3>
+
+            <!-- Top Notes -->
+            <div class="note-section">
+              <h4>Top Notes</h4>
+              <div class="notes-grid">
+                <div class="note-item" *ngFor="let note of getNotesArray(selectedPerfume['Top Notes'])">
+                  <img [src]="'assets/' + encode(note) + '.png'" alt="{{ note }}">
+                  <p>{{ note }}</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Middle Notes -->
+            <div class="note-section">
+              <h4>Middle Notes</h4>
+              <div class="notes-grid">
+                <div class="note-item" *ngFor="let note of getNotesArray(selectedPerfume['Middle Notes'])">
+                  <img [src]="'assets/' + encode(note) + '.png'" alt="{{ note }}">
+                  <p>{{ note }}</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Base Notes -->
+            <div class="note-section">
+              <h4>Base Notes</h4>
+              <div class="notes-grid">
+                <div class="note-item" *ngFor="let note of getNotesArray(selectedPerfume['Base Notes'])">
+                  <img [src]="'assets/' + encode(note) + '.png'" alt="{{ note }}">
+                  <p>{{ note }}</p>
+                </div>
+              </div>
+            </div>
+
+            <button class="scroll-btn" (click)="scrollRight()">➡ Voir les accords</button>
+          </div>
+
+          <!-- ACCORDS ensuite -->
+          <div class="scroll-section accords">
+            <h3>Accords</h3>
+            <div class="accord-bar" *ngFor="let acc of getAccords(selectedPerfume)">
+              <span class="accord-label">{{ acc.name }} ({{ acc.value }}%)</span>
+              <div class="bar-container">
+                <div
+                  class="bar-fill"
+                  [ngStyle]="{
+                    'width': acc.value + '%',
+                    'background-image': 'url(assets/' + encode(acc.name) + '.jpg)'
+                  }">
+                </div>
+              </div>
+            </div>
+            <button class="scroll-btn" (click)="scrollLeft()">⬅ Retour aux notes</button>
+          </div>
+
+        </div>
+
+        <!-- Bouton Fermer centré en bas -->
+        <div class="close-container">
+          <button class="close-btn" (click)="closePerfume()">Fermer</button>
+        </div>
+
+      </div>
+    </div>
   </div>
 </div>

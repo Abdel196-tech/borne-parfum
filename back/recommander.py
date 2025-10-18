@@ -4,7 +4,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 
 # Charger le fichier Excel
 df = pd.read_excel("data/resultats_parfums_clean_filled - Copie.xlsx")
-
+df["Brand"] = df["Brand"].str.replace('\u2011', '-')
 # Poids pour les types de notes
 weights_position = {
     "Top Notes": 0.33,
