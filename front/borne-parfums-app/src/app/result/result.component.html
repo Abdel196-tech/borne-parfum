@@ -1,16 +1,22 @@
 <div class="header">
   <div class="nav-left">
-    <button class="back-btn" onclick="history.back()">⬅ Retour</button>
-    <button class="home-btn" onclick="window.location.href='/'">🏠 Accueil</button>
+    <button class="back-btn" (click)="goBack()">⬅ {{ backBtnText }}</button>
+    <button class="home-btn" (click)="goHome()">🏠 {{ homeBtnText }}</button>
   </div>
 </div>
 
 <div class="container">
-  <div class="perfume-scroll">
-    <div class="perfume-card" *ngFor="let p of recommendations" (click)="openPerfume(p)">
-      <div
-        class="perfume-image"
-        [style.background-image]="'url(assets/' + encode(p.Perfume || 'default') + '.png)'">
+  <div class="perfume-scroll" *ngIf="recommendations.length > 0">
+    <div class="perfume-card" *ngFor="let p of recommendations">
+      <div class="perfume-image-container">
+        <div
+          class="perfume-image perfume-image-primary"
+          [style.background-image]="'url(assets/Parfums/' + encode(p.Perfume || 'default') + '.png)'">
+        </div>
+        <div
+          class="perfume-image perfume-image-secondary"
+          [style.background-image]="'url(assets/Parfums/' + encode(p.Perfume || 'default') + '2.png)'">
+        </div>
       </div>
 
       <div class="perfume-info">
@@ -18,15 +24,31 @@
         <p class="perfume-brand">{{ p.Brand }}</p>
 
         <div class="info">
-          <p><strong>Longevity:</strong> {{ p['Longevity'] }}</p>
-          <p><strong>Sillage :</strong> {{ p['Sillage'] }}</p>
-          <p><strong>Vitrine:</strong> {{ p['Vitrine'] }}</p>
-          <p><strong>Similarity_Rank:</strong> {{ p['Similarity_Rank'] }}</p>
+          <p><strong>{{ longevityText }}:</strong> {{ p['Longevity'] }}</p>
+          <p><strong>{{ sillageText }}:</strong> {{ p['Sillage'] }}</p>
+          <p><strong>{{ vitrineText }}:</strong> {{ p['Vitrine'] }}</p>
+          <p><strong>{{ similarityRankText }}:</strong> {{ p['Similarity_Rank'] }}</p>
         </div>
 
-        <a [href]="p.URL" target="_blank" class="btn-link">Voir le produit</a>
+        <button class="btn-link" (click)="openPerfume(p)">{{ viewProductText }}</button>
+        
+        <!-- Bouton de statut de stock -->
+        <div class="stock-indicator">
+          <button 
+            class="stock-btn" 
+            [ngClass]="'stock-' + getStockStatus(p)"
+            [title]="getStockText(p)">
+            <span class="stock-icon">●</span>
+            <span class="stock-text">{{ getStockText(p) }}</span>
+          </button>
+        </div>
       </div>
     </div>
+  </div>
+  
+  <!-- Message si aucune recommandation -->
+  <div class="no-recommendations" *ngIf="recommendations.length === 0">
+    <p>{{ noRecommendationsText }}</p>
   </div>
 </div>
 
@@ -40,7 +62,7 @@
       <div class="modal-left">
         <div
           class="modal-image"
-          [style.background-image]="'url(assets/' + encode(selectedPerfume.Perfume || 'default') + '.png)'">
+          [style.background-image]="'url(assets/Parfums/' + encode(selectedPerfume.Perfume || 'default') + '.png)'">
         </div>
 
         <div class="image-info">
@@ -60,11 +82,11 @@
 
           <!-- NOTES en premier -->
           <div class="scroll-section notes">
-            <h3>Notes</h3>
+            <h3>{{ notesText }}</h3>
 
             <!-- Top Notes -->
             <div class="note-section">
-              <h4>Top Notes</h4>
+              <h4>{{ topNotesText }}</h4>
               <div class="notes-grid">
                 <div class="note-item" *ngFor="let note of getNotesArray(selectedPerfume['Top Notes'])">
                   <img [src]="'assets/' + encode(note) + '.png'" alt="{{ note }}">
@@ -75,7 +97,7 @@
 
             <!-- Middle Notes -->
             <div class="note-section">
-              <h4>Middle Notes</h4>
+              <h4>{{ middleNotesText }}</h4>
               <div class="notes-grid">
                 <div class="note-item" *ngFor="let note of getNotesArray(selectedPerfume['Middle Notes'])">
                   <img [src]="'assets/' + encode(note) + '.png'" alt="{{ note }}">
@@ -86,7 +108,7 @@
 
             <!-- Base Notes -->
             <div class="note-section">
-              <h4>Base Notes</h4>
+              <h4>{{ baseNotesText }}</h4>
               <div class="notes-grid">
                 <div class="note-item" *ngFor="let note of getNotesArray(selectedPerfume['Base Notes'])">
                   <img [src]="'assets/' + encode(note) + '.png'" alt="{{ note }}">
@@ -95,12 +117,12 @@
               </div>
             </div>
 
-            <button class="scroll-btn" (click)="scrollRight()">➡ Voir les accords</button>
+            <button class="scroll-btn" (click)="scrollRight()">➡ {{ seeAccordsText }}</button>
           </div>
 
           <!-- ACCORDS ensuite -->
           <div class="scroll-section accords">
-            <h3>Accords</h3>
+            <h3>{{ accordsText }}</h3>
             <div class="accord-bar" *ngFor="let acc of getAccords(selectedPerfume)">
               <span class="accord-label">{{ acc.name }} ({{ acc.value }}%)</span>
               <div class="bar-container">
@@ -113,14 +135,14 @@
                 </div>
               </div>
             </div>
-            <button class="scroll-btn" (click)="scrollLeft()">⬅ Retour aux notes</button>
+            <button class="scroll-btn" (click)="scrollLeft()">⬅ {{ backToNotesText }}</button>
           </div>
 
         </div>
 
         <!-- Bouton Fermer centré en bas -->
         <div class="close-container">
-          <button class="close-btn" (click)="closePerfume()">Fermer</button>
+          <button class="close-btn" (click)="closePerfume()">{{ closeText }}</button>
         </div>
 
       </div>

@@ -76,6 +76,50 @@ body {
   font-size: 2.5rem;
   font-weight: 700;
 }
+.title-section {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.search-container {
+  position: relative;
+  display: inline-block;
+  width: 60%;
+  max-width: 400px;
+  margin: 1rem auto;
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.75rem 1rem 0.75rem 2.5rem;
+  font-size: 1rem;
+  border: 1px solid #e6dfd3;
+  border-radius: 2rem;
+  background-color: #faf8f5;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  transition: all 0.3s ease;
+}
+
+.search-input::placeholder {
+  color: #b8b3aa;
+  font-style: italic;
+}
+
+.search-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(194,167,125,0.15);
+  border-color: #c2a77d;
+  background-color: #fff;
+}
+
+.icon-search {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #c2a77d;
+  font-size: 1.1rem;
+}
 
 /* Section Notes Disponibles */
 .notes-section {

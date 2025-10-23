@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { ViewChild, ElementRef } from '@angular/core';
+import { LanguageService } from '../services/language.service';
+import { TRANSLATIONS } from '../i18n/translation5';
 
 @Component({
   selector: 'app-result',
@@ -10,11 +12,39 @@ import { ViewChild, ElementRef } from '@angular/core';
   standalone: true,
   imports: [CommonModule]
 })
-export class ResultComponent {
+export class ResultComponent implements OnInit {
   recommendations: any[] = [];
   selectedPerfume: any = null; // ✅ variable modal
   @ViewChild('scrollContainer') scrollContainer!: ElementRef<HTMLDivElement>;
-  constructor(private router: Router) {}
+  
+  // Langue actuelle
+  lang: 'fr' | 'en' | 'nl' = 'fr';
+  
+  // Textes traduits
+  backBtnText!: string;
+  homeBtnText!: string;
+  longevityText!: string;
+  sillageText!: string;
+  vitrineText!: string;
+  similarityRankText!: string;
+  viewProductText!: string;
+  notesText!: string;
+  topNotesText!: string;
+  middleNotesText!: string;
+  baseNotesText!: string;
+  seeAccordsText!: string;
+  accordsText!: string;
+  backToNotesText!: string;
+  closeText!: string;
+  noRecommendationsText!: string;
+  inStockText!: string;
+  outOfStockText!: string;
+  stockOutText!: string;
+  
+  constructor(
+    private router: Router,
+    private languageService: LanguageService
+  ) {}
 
   ngOnInit(): void {
     const nav = this.router.getCurrentNavigation();
@@ -26,6 +56,43 @@ export class ResultComponent {
     } else {
       console.log('Aucune recommandation reçue');
     }
+
+    // S'abonner aux changements de langue
+    this.languageService.currentLang$.subscribe(lang => {
+      this.lang = lang;
+      this.updateTranslations();
+    });
+  }
+
+  updateTranslations(): void {
+    const t = TRANSLATIONS[this.lang];
+    this.backBtnText = t.result?.backBtn || 'Retour';
+    this.homeBtnText = t.result?.homeBtn || 'Accueil';
+    this.longevityText = t.result?.longevity || 'Longévité';
+    this.sillageText = t.result?.sillage || 'Sillage';
+    this.vitrineText = t.result?.vitrine || 'Vitrine';
+    this.similarityRankText = t.result?.similarityRank || 'Rang de similarité';
+    this.viewProductText = t.result?.viewProduct || 'Voir le produit';
+    this.notesText = t.result?.notes || 'Notes';
+    this.topNotesText = t.result?.topNotes || 'Notes de tête';
+    this.middleNotesText = t.result?.middleNotes || 'Notes de cœur';
+    this.baseNotesText = t.result?.baseNotes || 'Notes de fond';
+    this.seeAccordsText = t.result?.seeAccords || 'Voir les accords';
+    this.accordsText = t.result?.accords || 'Accords';
+    this.backToNotesText = t.result?.backToNotes || 'Retour aux notes';
+    this.closeText = t.result?.close || 'Fermer';
+    this.noRecommendationsText = t.result?.noRecommendations || 'Aucune recommandation disponible';
+    this.inStockText = t.result?.inStock || 'En stock';
+    this.outOfStockText = t.result?.outOfStock || 'Pas en stock';
+    this.stockOutText = t.result?.stockOut || 'Non disponible';
+  }
+
+  goBack(): void {
+    this.router.navigate(['/menu']);
+  }
+
+  goHome(): void {
+    this.router.navigate(['/welcome']);
   }
 
   // ✅ Méthode pour encoder correctement les noms de fichiers
@@ -98,4 +165,38 @@ export class ResultComponent {
   if (!noteString) return [];
   return noteString.split(',').map(n => n.trim());
 }
+
+  // Méthode pour déterminer le statut du stock
+  getStockStatus(perfume: any): 'in-stock' | 'out-of-stock' | 'stock-out' {
+    const stock = perfume?.Stock;
+    
+    // Si Stock = "OUT" ou "NON DISPONIBLE" (string)
+    if (stock === 'OUT' || stock === 'out' || stock === 'NON DISPONIBLE' || stock === 'non disponible' || stock === 'NON DISPON') {
+      return 'stock-out';
+    }
+    
+    // Si Stock = FALSE ou falsy (0, null, undefined, etc.)
+    if (!stock || stock === false || stock === 'FALSE' || stock === 'false') {
+      return 'out-of-stock';
+    }
+    
+    // Si Stock = TRUE ou truthy
+    return 'in-stock';
+  }
+
+  // Méthode pour obtenir le texte du statut
+  getStockText(perfume: any): string {
+    const status = this.getStockStatus(perfume);
+    
+    switch (status) {
+      case 'in-stock':
+        return this.inStockText;
+      case 'out-of-stock':
+        return this.outOfStockText;
+      case 'stock-out':
+        return this.stockOutText;
+      default:
+        return this.outOfStockText;
+    }
+  }
 }

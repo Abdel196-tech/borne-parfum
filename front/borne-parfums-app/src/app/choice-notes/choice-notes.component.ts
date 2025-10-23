@@ -6,30 +6,20 @@ import { CommonModule } from '@angular/common';
 import { TRANSLATIONS } from '../i18n/translation3';
 import { LanguageService } from '../services/language.service';
 import { PerfumeService } from '../services/perfume.service'; 
+import { availableNotes } from '../availableNotes';
+import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-choice-notes',
   templateUrl: './choice-notes.component.html',
   styleUrls: ['./choice-notes.component.css'],
   standalone: true,
-  imports: [CommonModule]
+  imports: [CommonModule, FormsModule]
 })
 export class ChoiceNotesComponent implements OnInit {
-availableNotes = [
-  { key: 'rose', img: 'assets/rose.png' },
-  { key: 'jasmine', img: 'assets/jasmine.png' },
-  { key: 'bergamot', img: 'assets/bergamote.png' },
-  { key: 'lemon', img: 'assets/citron.png' },
-  { key: 'sandalwood', img: 'assets/santal.png' },
-  { key: 'cedar', img: 'assets/cedre.png' },
-  { key: 'vanilla', img: 'assets/vanille.png' },
-  { key: 'amber', img: 'assets/amber.png' },
-  { key: 'mint', img: 'assets/menthe.png' },
-  { key: 'marine', img: 'assets/marine.png' },
-  { key: 'apple', img: 'assets/pomme.png' },
-  { key: 'peach', img: 'assets/peche.png' }
-];
+availableNotes = availableNotes;
 
 
+  searchTerm: string = '';
   selectedNotes: string[] = [];
   maxNotes: number = 5;
 
@@ -62,7 +52,7 @@ availableNotes = [
       this.updateTranslations();
     });
   }
-
+searchPlaceholder: string = '';
   updateTranslations(): void {
     const t = TRANSLATIONS[this.lang];
     this.title = t.choiceNotes?.mainTitle || 'Choisis tes notes';
@@ -76,6 +66,8 @@ availableNotes = [
      // Texte des boutons Accueil et Retour
     this.homeBtnText = t.choiceNotes?.homeBtn || 'Accueil';
     this.backBtnText = t.choiceNotes?.backBtn || 'Retour';
+    this.searchPlaceholder = t.choiceNotes?.searchPlaceholder;
+
     }
   getNoteName(key: string): string {
   const notes = TRANSLATIONS[this.lang].notes as Record<string, string>;
@@ -128,6 +120,17 @@ availableNotes = [
         error: (err) => console.error('Erreur API:', err)
       });
   }
+}
+get filteredNotes() {
+  const term = this.searchTerm.trim().toLowerCase();
+
+  // si l'utilisateur n'a rien écrit → on montre tout
+  if (!term) return this.availableNotes;
+
+  // sinon on filtre selon le début du nom de la note
+  return this.availableNotes.filter(note =>
+    this.getNoteName(note.key).toLowerCase().startsWith(term)
+  );
 }
 
 }

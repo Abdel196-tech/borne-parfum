@@ -1,13 +1,13 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from recommander import recommend
+from RecommanderByNotes import recommend
 
 app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:4200"],
+    allow_origins=["http://localhost:59996"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

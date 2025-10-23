@@ -5,6 +5,11 @@ from sklearn.metrics.pairwise import cosine_similarity
 # Charger le fichier Excel
 df = pd.read_excel("data/resultats_parfums_clean_filled - Copie.xlsx")
 df["Brand"] = df["Brand"].str.replace('\u2011', '-')
+i = 240
+
+# ⚠️ En Python, iloc exclut la borne supérieure (comme range)
+sous_df = df.iloc[0:i]  # va de la 1ère à la iᵉ ligne (exclue si i=10 => lignes 0 à 239)
+
 # Poids pour les types de notes
 weights_position = {
     "Top Notes": 0.33,
@@ -15,7 +20,7 @@ weights_position = {
 # Extraire toutes les notes uniques
 all_notes = set()
 for col in weights_position.keys():
-    for row in df[col].dropna():
+    for row in sous_df[col].dropna():
         notes = [note.strip().lower() for note in str(row).split(",")]
         all_notes.update(notes)
 
@@ -31,7 +36,7 @@ def create_perfume_vector(row):
                 vector[note_to_idx[note]] += w
     return np.clip(vector, 0, 1)
 
-perfume_matrix = np.array([create_perfume_vector(row) for _, row in df.iterrows()])
+perfume_matrix = np.array([create_perfume_vector(row) for _, row in sous_df.iterrows()])
 
 def create_client_vector(notes_list: list):
     vector = np.zeros(len(all_notes))
@@ -41,12 +46,12 @@ def create_client_vector(notes_list: list):
             vector[note_to_idx[note_lc]] = 1.0
     return vector.reshape(1, -1)
 
-def recommend(notes_list: list, top_n=20):
+def recommend(notes_list: list, top_n=25):
     # 1️⃣ Similarité cosinus
     client_vector = create_client_vector(notes_list)
     similarity_scores = cosine_similarity(client_vector, perfume_matrix)[0]
 
-    df_copy = df.copy()
+    df_copy = sous_df.copy()
     df_copy["similarity_score_advanced"] = similarity_scores
 
     # 2️⃣ Conversion sécurisée de Marge
@@ -77,8 +82,8 @@ def recommend(notes_list: list, top_n=20):
     return df_top.to_dict(orient="records")
 
 
-def calculate_similarity_rank(df):
-    df_temp = df.sort_values(by="similarity_score_advanced", ascending=False).copy()
+def calculate_similarity_rank(sous_df):
+    df_temp = sous_df.sort_values(by="similarity_score_advanced", ascending=False).copy()
     df_temp["similarity_rounded"] = df_temp["similarity_score_advanced"].round(8)
 
     current_rank = 1
